@@ -601,6 +601,13 @@
             border-radius: 8px;
         }
 
+        .agent-photo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
         .agent-info {
             padding: 1.5rem;
             display: flex;
@@ -1156,7 +1163,8 @@
             <div class="agents-slider" id="agentsSlider">
                 <div class="agent-card" data-index="0">
                     <div class="agent-photo">
-                        <div class="agent-photo-placeholder">role1.png</div>
+                        <img src="role1.png" alt="Customer Service" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="agent-photo-placeholder" style="display: none;">role1.png</div>
                     </div>
                     <div class="agent-info">
                         <div class="agent-content">
@@ -1171,7 +1179,8 @@
                 </div>
                 <div class="agent-card" data-index="1">
                     <div class="agent-photo">
-                        <div class="agent-photo-placeholder">role2.png</div>
+                        <img src="role2.png" alt="Sales" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="agent-photo-placeholder" style="display: none;">role2.png</div>
                     </div>
                     <div class="agent-info">
                         <div class="agent-content">
@@ -1186,7 +1195,8 @@
                 </div>
                 <div class="agent-card" data-index="2">
                     <div class="agent-photo">
-                        <div class="agent-photo-placeholder">role3.png</div>
+                        <img src="role3.png" alt="Konsultan" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="agent-photo-placeholder" style="display: none;">role3.png</div>
                     </div>
                     <div class="agent-info">
                         <div class="agent-content">
@@ -1201,7 +1211,8 @@
                 </div>
                 <div class="agent-card" data-index="3">
                     <div class="agent-photo">
-                        <div class="agent-photo-placeholder">role4.png</div>
+                        <img src="role4.png" alt="Artis" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="agent-photo-placeholder" style="display: none;">role4.png</div>
                     </div>
                     <div class="agent-info">
                         <div class="agent-content">
@@ -1216,7 +1227,8 @@
                 </div>
                 <div class="agent-card" data-index="4">
                     <div class="agent-photo">
-                        <div class="agent-photo-placeholder">role5.png</div>
+                        <img src="role5.png" alt="Coach/Mentor" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="agent-photo-placeholder" style="display: none;">role5.png</div>
                     </div>
                     <div class="agent-info">
                         <div class="agent-content">
@@ -1231,7 +1243,8 @@
                 </div>
                 <div class="agent-card" data-index="5">
                     <div class="agent-photo">
-                        <div class="agent-photo-placeholder">role6.png</div>
+                        <img src="role6.png" alt="Tour Guide" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="agent-photo-placeholder" style="display: none;">role6.png</div>
                     </div>
                     <div class="agent-info">
                         <div class="agent-content">
@@ -1246,7 +1259,8 @@
                 </div>
                 <div class="agent-card" data-index="6">
                     <div class="agent-photo">
-                        <div class="agent-photo-placeholder">role7.png</div>
+                        <img src="role7.png" alt="Sejarawan" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="agent-photo-placeholder" style="display: none;">role7.png</div>
                     </div>
                     <div class="agent-info">
                         <div class="agent-content">
@@ -1261,7 +1275,8 @@
                 </div>
                 <div class="agent-card" data-index="7">
                     <div class="agent-photo">
-                        <div class="agent-photo-placeholder">role8.png</div>
+                        <img src="role8.png" alt="Tokoh Inspiratif" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="agent-photo-placeholder" style="display: none;">role8.png</div>
                     </div>
                     <div class="agent-info">
                         <div class="agent-content">
@@ -1276,7 +1291,8 @@
                 </div>
                 <div class="agent-card" data-index="8">
                     <div class="agent-photo">
-                        <div class="agent-photo-placeholder">role9.png</div>
+                        <img src="role9.png" alt="Karakter Fiksi" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="agent-photo-placeholder" style="display: none;">role9.png</div>
                     </div>
                     <div class="agent-info">
                         <div class="agent-content">
@@ -1301,7 +1317,8 @@
         <div class="example-grid">
             <div class="example-card">
                 <div class="agent-photo" style="width: 80px; height: 80px; margin: 0 auto;">
-                    <div class="agent-photo-placeholder" style="font-size: 0.6rem;">
+                    <img src="contoh1.png" alt="Timothy Ronald AI" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="agent-photo-placeholder" style="font-size: 0.6rem; display: none;">
                         <div>contoh1.png</div>
                     </div>
                 </div>
@@ -1312,7 +1329,8 @@
             </div>
             <div class="example-card">
                 <div class="agent-photo" style="width: 80px; height: 80px; margin: 0 auto;">
-                    <div class="agent-photo-placeholder" style="font-size: 0.6rem;">
+                    <img src="contoh2.png" alt="KDM AI" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="agent-photo-placeholder" style="font-size: 0.6rem; display: none;">
                         <div>contoh2.png</div>
                     </div>
                 </div>
@@ -1323,7 +1341,8 @@
             </div>
             <div class="example-card">
                 <div class="agent-photo" style="width: 80px; height: 80px; margin: 0 auto;">
-                    <div class="agent-photo-placeholder" style="font-size: 0.6rem;">
+                    <img src="contoh3.png" alt="CaptGPT" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="agent-photo-placeholder" style="font-size: 0.6rem; display: none;">
                         <div>contoh3.png</div>
                     </div>
                 </div>
@@ -1628,5 +1647,5 @@
             });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'981f5ca0d1913e11',t:'MTc1ODM1MDc0Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'981f951684799b9f',t:'MTc1ODM1MzA1OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
