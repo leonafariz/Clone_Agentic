@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clone Agentic - Clona AI dari Manusia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #1a0033 0%, #2d1b69 25%, #0f0f23 50%, #4a0e4e 75%, #000000 100%);
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animasi bintang */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Header */
+        .header {
+            position: relative;
+            z-index: 10;
+            padding: 1.5rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            height: 50px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            width: 300px;
+            object-fit: contain;
+        }
+
+        .logo-fallback {
+            font-size: 1rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            padding: 0.5rem 1rem;
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-box {
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            color: white;
+            outline: none;
+            backdrop-filter: blur(10px);
+            width: 300px;
+        }
+
+        .search-box::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .search-btn {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            z-index: 10;
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff00ff, #00ffff, #ff69b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 0, 255, 0.5); }
+            to { text-shadow: 0 0 30px rgba(0, 255, 255, 0.8); }
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: #c9b3ff;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-btn {
+            padding: 1.2rem 3rem;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hero-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 0, 255, 0.4);
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .super-agentic-container {
+            position: relative;
+            z-index: 10;
+        }
+
+        .super-agentic-image {
+            width: 100%;
+            height: auto;
+            max-width: 400px;
+            filter: drop-shadow(0 0 30px rgba(147, 51, 234, 0.5));
+        }
+
+        .floating {
+            animation: floating 6s ease-in-out infinite !important;
+        }
+
+        .floating-fast {
+            animation: floating 3s ease-in-out infinite !important;
+        }
+
+        .floating-slow {
+            animation: floating 8s ease-in-out infinite !important;
+        }
+
+        .floating-medium {
+            animation: floating-medium 5s ease-in-out infinite !important;
+        }
+
+        .floating-ultra-slow {
+            animation: floating-ultra-slow 12s ease-in-out infinite !important;
+        }
+
+        .floating-ultra-fast {
+            animation: floating-ultra-fast 2s ease-in-out infinite !important;
+        }
+
+        .floating-reverse {
+            animation: floating-reverse 7s ease-in-out infinite !important;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-40px); }
+        }
+
+        @keyframes floating-medium {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-35px) rotate(10deg); }
+        }
+
+        @keyframes floating-ultra-slow {
+            0%, 100% { transform: translateY(0px) rotate(45deg); }
+            50% { transform: translateY(-50px) rotate(55deg); }
+        }
+
+        @keyframes floating-ultra-fast {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-25px) scale(1.2); }
+        }
+
+        @keyframes floating-reverse {
+            0%, 100% { transform: translateY(-30px) rotate(30deg); }
+            50% { transform: translateY(10px) rotate(40deg); }
+        }
+
+        .purple-glow {
+            box-shadow: 0 0 20px rgba(147, 51, 234, 0.6);
+            animation: pulseGlow 2s ease-in-out infinite alternate;
+        }
+
+        .blue-glow {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+            animation: pulseGlow 2.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            from { box-shadow: 0 0 20px rgba(147, 51, 234, 0.4); }
+            to { box-shadow: 0 0 30px rgba(147, 51, 234, 0.8); }
+        }
+
+        .pulse {
+            opacity: 0.7;
+        }
+
+
+
+        /* Stats Section */
+        .stats {
+            margin: 4rem auto;
+            max-width: 1000px;
+            padding: 0 2rem;
+        }
+
+        .stats-container {
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1));
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 60px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(255, 0, 255, 0.2);
+        }
+
+        .stats-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            position: relative;
+        }
+
+        .stat-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 20%;
+            bottom: 20%;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3), transparent);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff00ff, #00ffff, #ff69b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
+            animation: pulse-glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            from { 
+                filter: drop-shadow(0 0 10px rgba(255, 0, 255, 0.5));
+                transform: scale(1);
+            }
+            to { 
+                filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.8));
+                transform: scale(1.05);
+            }
+        }
+
+        .stat-label {
+            color: #e0d4ff;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .stat-label::before {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 2px;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            border-radius: 1px;
+        }
+
+        /* Floating particles around stats */
+        .stats-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 0, 255, 0.6);
+            border-radius: 50%;
+            animation: float-particle 8s ease-in-out infinite;
+        }
+
+        .stats-particle:nth-child(2) {
+            background: rgba(0, 255, 255, 0.6);
+            animation-delay: -2s;
+            animation-duration: 6s;
+        }
+
+        .stats-particle:nth-child(3) {
+            background: rgba(255, 105, 180, 0.6);
+            animation-delay: -4s;
+            animation-duration: 10s;
+        }
+
+        @keyframes float-particle {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px);
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-30px) translateX(20px);
+            }
+        }
+
+        /* Integrations */
+        .integrations {
+            padding: 4rem 0;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .integrations h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: #ff69b4;
+        }
+
+        .integration-scroll {
+            display: flex;
+            animation: scroll 20s linear infinite;
+            gap: 3rem;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .integration-logo {
+            min-width: 150px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .integration-logo:hover {
+            color: #00ffff;
+        }
+
+        /* Role Agents Section */
+        .role-agents {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .role-agents h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ff69b4;
+        }
+
+        .carousel-container {
+            position: relative;
+            height: 500px;
+            overflow: visible;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 100px;
+        }
+
+        .agents-slider {
+            display: flex;
+            position: relative;
+            width: calc(100% + 200px);
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            margin: 0 -100px;
+            overflow: visible;
+        }
+
+        .agent-card {
+            position: absolute;
+            width: 280px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            opacity: 0.6;
+            transform: scale(0.8) translateZ(0);
+        }
+
+        .agent-card.center {
+            opacity: 1;
+            transform: scale(1.1) translateZ(10px);
+            z-index: 10;
+            box-shadow: 0 25px 50px rgba(255, 0, 255, 0.4);
+            border: 2px solid rgba(255, 0, 255, 0.5);
+        }
+
+        .agent-card.left-1 {
+            transform: translateX(-320px) scale(0.9) rotateY(15deg);
+            opacity: 0.8;
+            z-index: 5;
+        }
+
+        .agent-card.right-1 {
+            transform: translateX(320px) scale(0.9) rotateY(-15deg);
+            opacity: 0.8;
+            z-index: 5;
+        }
+
+        .agent-card.left-2 {
+            transform: translateX(-640px) scale(0.7) rotateY(25deg);
+            opacity: 0.4;
+            z-index: 2;
+        }
+
+        .agent-card.right-2 {
+            transform: translateX(640px) scale(0.7) rotateY(-25deg);
+            opacity: 0.4;
+            z-index: 2;
+        }
+
+        .agent-card.hidden {
+            opacity: 0;
+            transform: scale(0.5);
+            z-index: 1;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(255, 0, 255, 0.3);
+        }
+
+        .carousel-nav:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 15px 30px rgba(255, 0, 255, 0.5);
+        }
+
+        .carousel-nav.prev {
+            left: 20px;
+        }
+
+        .carousel-nav.next {
+            right: 20px;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 2rem;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            transform: scale(1.2);
+        }
+
+        .agent-photo {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(45deg, #1a237e, #4a148c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .agent-photo-placeholder {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
+            width: 280px;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+        }
+
+        .agent-info {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            background: linear-gradient(135deg, #2d1b69 0%, #4a0e4e 50%, #1a0033 100%);
+        }
+
+        .agent-content {
+            flex: 1;
+        }
+
+        .agent-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .agent-card p {
+            color: #e0d4ff;
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .agent-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #ffd700;
+            font-weight: 500;
+        }
+
+        .deploy-btn {
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(255, 0, 255, 0.3);
+        }
+
+        .deploy-btn:hover {
+            background: linear-gradient(45deg, #e600e6, #00e6e6);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 0, 255, 0.5);
+        }
+
+        /* Example Agents */
+        .example-agents {
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .example-agents h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ff69b4;
+        }
+
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .example-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .example-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 0, 255, 0.2);
+        }
+
+        /* Video Section */
+        .video-section {
+            padding: 4rem 2rem;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .video-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, #1a237e, #4a148c);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            position: relative;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+        }
+
+        .video-placeholder-content {
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .video-placeholder-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.6;
+        }
+
+        .generator-btn {
+            padding: 1.5rem 3rem;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .generator-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 0, 255, 0.4);
+        }
+
+        /* Websites Gallery */
+        .websites-gallery {
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .websites-gallery h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ff69b4;
+        }
+
+        .websites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .website-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .website-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 0, 255, 0.2);
+        }
+
+        .website-preview {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #1a237e, #4a148c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .website-info {
+            padding: 1.5rem;
+        }
+
+        .website-info h3 {
+            color: #ff69b4;
+            margin-bottom: 0.5rem;
+        }
+
+        .website-info p {
+            color: #c9b3ff;
+            font-size: 0.9rem;
+        }
+
+        /* Social Media */
+        .social-media {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .social-media h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #ff69b4;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .social-link img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .social-link span {
+            font-size: 0.7rem;
+            color: white;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(255, 0, 255, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #ff69b4;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-logo img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+        }
+
+        .footer-logo-fallback {
+            width: 120px;
+            height: 120px;
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #c9b3ff;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: #ff00ff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1rem;
+            color: #c9b3ff;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .stat-item:nth-child(2)::after,
+            .stat-item:nth-child(4)::after {
+                display: none;
+            }
+            
+            .stat-item:nth-child(1)::after,
+            .stat-item:nth-child(3)::after {
+                right: 0;
+                top: 20%;
+                bottom: 20%;
+                width: 1px;
+                background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3), transparent);
+            }
+            
+            .search-box {
+                width: 200px;
+            }
+            
+            .robot-img {
+                width: 300px;
+                height: 300px;
+                font-size: 6rem;
+            }
+            
+            /* Carousel responsive */
+            .carousel-container {
+                height: 400px;
+                padding: 40px 60px;
+            }
+            
+            .agent-card {
+                width: 240px;
+            }
+            
+            .agent-card.left-1, .agent-card.right-1 {
+                transform: translateX(-260px) scale(0.85);
+            }
+            
+            .agent-card.right-1 {
+                transform: translateX(260px) scale(0.85);
+            }
+            
+            .agent-card.left-2, .agent-card.right-2 {
+                display: none;
+            }
+            
+            .carousel-nav {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
+            .carousel-nav.prev {
+                left: 10px;
+            }
+            
+            .carousel-nav.next {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Bintang-bintang -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <img src="logo.png" alt="Clone Agentic Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="logo-fallback" style="display: none;">logo.png<br><span style="font-size: 0.8rem; opacity: 0.8;">1822 x 392</span></div>
+        </div>
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="Cari AI Agent...">
+            <button class="search-btn">Search</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Clone Agentic</h1>
+            <p>Clona AI dari sebuah manusia. Ciptakan AI Agent yang dapat meniru kepribadian, gaya bicara, dan keahlian seseorang dengan teknologi terdepan.</p>
+            <button class="hero-btn" onclick="startCloning()">Mulai Cloning</button>
+        </div>
+        <div class="hero-image">
+            <div class="relative">
+                <div class="w-full h-80 md:h-96 lg:h-[500px] relative" style="width: 100%; height: 320px;">
+                    <!-- AI Visualization - Replace with super_agentic.png -->
+                    <div class="absolute inset-0 flex items-center justify-center" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center;">
+                        <!-- Placeholder for super_agentic.png with floating animation -->
+                        <div class="super-agentic-container floating">
+                            <!-- This is where you'll place your transparent PNG image -->
+                            <img src="super_agentic.png" alt="Super Agentic AI" class="super-agentic-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div style="display: none; color: rgba(255, 255, 255, 0.7); font-size: 1.2rem; text-align: center;">super_agentic.png<br><span style="font-size: 0.9rem; opacity: 0.8;">AI Visualization Image</span></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating Elements -->
+                    <div class="absolute purple-glow floating-fast" style="position: absolute; top: 40px; left: 40px; width: 48px; height: 48px; border-radius: 8px; background: linear-gradient(135deg, rgba(147, 51, 234, 0.4), rgba(59, 130, 246, 0.4));"></div>
+                    <div class="absolute blue-glow floating-slow" style="position: absolute; bottom: 80px; right: 40px; width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(147, 51, 234, 0.4));"></div>
+                    <div class="absolute purple-glow floating" style="position: absolute; top: 50%; right: 25%; width: 32px; height: 32px; border-radius: 4px; background: linear-gradient(135deg, rgba(147, 51, 234, 0.4), rgba(59, 130, 246, 0.4));"></div>
+                    
+                    <!-- Additional Floating Elements -->
+                    <div class="absolute blue-glow floating-medium" style="position: absolute; top: 20%; left: 20%; width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(147, 51, 234, 0.4));"></div>
+                    <div class="absolute purple-glow floating-ultra-slow" style="position: absolute; bottom: 30%; left: 15%; width: 28px; height: 28px; border-radius: 6px; background: linear-gradient(135deg, rgba(147, 51, 234, 0.4), rgba(59, 130, 246, 0.4)); transform: rotate(45deg);"></div>
+                    <div class="absolute blue-glow floating-ultra-fast" style="position: absolute; top: 30%; right: 15%; width: 36px; height: 36px; border-radius: 18px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(147, 51, 234, 0.4));"></div>
+                    <div class="absolute purple-glow floating-reverse" style="position: absolute; bottom: 50%; left: 30%; width: 24px; height: 24px; border-radius: 2px; background: linear-gradient(135deg, rgba(147, 51, 234, 0.4), rgba(59, 130, 246, 0.4)); transform: rotate(30deg);"></div>
+                    
+                    <!-- Connection Lines -->
+                    <svg class="absolute inset-0 w-full h-full pulse" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="250" y1="250" x2="100" y2="100" stroke="url(#purpleGradient)" stroke-width="1" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" from="0" to="100" dur="10s" repeatCount="indefinite"></animate>
+                        </line>
+                        <line x1="250" y1="250" x2="400" y2="100" stroke="url(#blueGradient)" stroke-width="1" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" from="0" to="-100" dur="8s" repeatCount="indefinite"></animate>
+                        </line>
+                        <line x1="250" y1="250" x2="400" y2="400" stroke="url(#purpleGradient)" stroke-width="1" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" from="0" to="100" dur="12s" repeatCount="indefinite"></animate>
+                        </line>
+                        <line x1="250" y1="250" x2="100" y2="400" stroke="url(#blueGradient)" stroke-width="1" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" from="0" to="-100" dur="9s" repeatCount="indefinite"></animate>
+                        </line>
+                        
+                        <defs>
+                            <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="rgba(147, 51, 234, 0.3)"></stop>
+                                <stop offset="100%" stop-color="rgba(147, 51, 234, 0)"></stop>
+                            </linearGradient>
+                            <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="rgba(59, 130, 246, 0.3)"></stop>
+                                <stop offset="100%" stop-color="rgba(59, 130, 246, 0)"></stop>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stats-container">
+            <!-- Floating particles -->
+            <div class="stats-particle" style="top: 20%; left: 10%;"></div>
+            <div class="stats-particle" style="top: 60%; right: 15%;"></div>
+            <div class="stats-particle" style="bottom: 30%; left: 80%;"></div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">9</div>
+                    <div class="stat-label">Role</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">User</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">27</div>
+                    <div class="stat-label">AI Agent</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1829</div>
+                    <div class="stat-label">Conversation</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integrations -->
+    <section class="integrations">
+        <h2>Integrations</h2>
+        <div class="integration-scroll">
+            <div class="integration-logo">integration1.png</div>
+            <div class="integration-logo">integration2.png</div>
+            <div class="integration-logo">integration3.png</div>
+            <div class="integration-logo">integration4.png</div>
+            <div class="integration-logo">integration5.png</div>
+            <div class="integration-logo">integration6.png</div>
+            <div class="integration-logo">integration7.png</div>
+            <div class="integration-logo">integration8.png</div>
+            <!-- Duplikat untuk scroll seamless -->
+            <div class="integration-logo">integration1.png</div>
+            <div class="integration-logo">integration2.png</div>
+            <div class="integration-logo">integration3.png</div>
+            <div class="integration-logo">integration4.png</div>
+            <div class="integration-logo">integration5.png</div>
+            <div class="integration-logo">integration6.png</div>
+            <div class="integration-logo">integration7.png</div>
+            <div class="integration-logo">integration8.png</div>
+        </div>
+    </section>
+
+    <!-- Role Agents -->
+    <section class="role-agents">
+        <h2>Role AI Agent</h2>
+        <div class="carousel-container">
+            <button class="carousel-nav prev" onclick="moveCarousel(-1)">‹</button>
+            <div class="agents-slider" id="agentsSlider">
+                <div class="agent-card" data-index="0">
+                    <div class="agent-photo">
+                        <div class="agent-photo-placeholder">role1.png</div>
+                    </div>
+                    <div class="agent-info">
+                        <div class="agent-content">
+                            <h3>Customer Service</h3>
+                            <p>Layanan pelanggan 24/7 yang ramah</p>
+                        </div>
+                        <div class="agent-actions">
+                            <button class="deploy-btn">Deploy</button>
+                            <div class="rating">4.9⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card" data-index="1">
+                    <div class="agent-photo">
+                        <div class="agent-photo-placeholder">role2.png</div>
+                    </div>
+                    <div class="agent-info">
+                        <div class="agent-content">
+                            <h3>Sales</h3>
+                            <p>Tenaga penjualan profesional</p>
+                        </div>
+                        <div class="agent-actions">
+                            <button class="deploy-btn">Deploy</button>
+                            <div class="rating">4.8⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card" data-index="2">
+                    <div class="agent-photo">
+                        <div class="agent-photo-placeholder">role3.png</div>
+                    </div>
+                    <div class="agent-info">
+                        <div class="agent-content">
+                            <h3>Konsultan</h3>
+                            <p>Konsultan ahli di berbagai bidang</p>
+                        </div>
+                        <div class="agent-actions">
+                            <button class="deploy-btn">Deploy</button>
+                            <div class="rating">4.9⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card" data-index="3">
+                    <div class="agent-photo">
+                        <div class="agent-photo-placeholder">role4.png</div>
+                    </div>
+                    <div class="agent-info">
+                        <div class="agent-content">
+                            <h3>Artis</h3>
+                            <p>Seniman kreatif dan inspiratif</p>
+                        </div>
+                        <div class="agent-actions">
+                            <button class="deploy-btn">Deploy</button>
+                            <div class="rating">4.7⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card" data-index="4">
+                    <div class="agent-photo">
+                        <div class="agent-photo-placeholder">role5.png</div>
+                    </div>
+                    <div class="agent-info">
+                        <div class="agent-content">
+                            <h3>Coach/Mentor</h3>
+                            <p>Pembimbing dan pelatih berpengalaman</p>
+                        </div>
+                        <div class="agent-actions">
+                            <button class="deploy-btn">Deploy</button>
+                            <div class="rating">4.9⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card" data-index="5">
+                    <div class="agent-photo">
+                        <div class="agent-photo-placeholder">role6.png</div>
+                    </div>
+                    <div class="agent-info">
+                        <div class="agent-content">
+                            <h3>Tour Guide</h3>
+                            <p>Pemandu wisata yang berpengalaman</p>
+                        </div>
+                        <div class="agent-actions">
+                            <button class="deploy-btn">Deploy</button>
+                            <div class="rating">4.6⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card" data-index="6">
+                    <div class="agent-photo">
+                        <div class="agent-photo-placeholder">role7.png</div>
+                    </div>
+                    <div class="agent-info">
+                        <div class="agent-content">
+                            <h3>Sejarawan</h3>
+                            <p>Ahli sejarah dengan pengetahuan luas</p>
+                        </div>
+                        <div class="agent-actions">
+                            <button class="deploy-btn">Deploy</button>
+                            <div class="rating">4.8⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card" data-index="7">
+                    <div class="agent-photo">
+                        <div class="agent-photo-placeholder">role8.png</div>
+                    </div>
+                    <div class="agent-info">
+                        <div class="agent-content">
+                            <h3>Tokoh Inspiratif</h3>
+                            <p>Figur motivasi dan inspirasi</p>
+                        </div>
+                        <div class="agent-actions">
+                            <button class="deploy-btn">Deploy</button>
+                            <div class="rating">4.9⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card" data-index="8">
+                    <div class="agent-photo">
+                        <div class="agent-photo-placeholder">role9.png</div>
+                    </div>
+                    <div class="agent-info">
+                        <div class="agent-content">
+                            <h3>Karakter Fiksi</h3>
+                            <p>Karakter dari dunia fantasi dan fiksi</p>
+                        </div>
+                        <div class="agent-actions">
+                            <button class="deploy-btn">Deploy</button>
+                            <div class="rating">4.5⭐</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-nav next" onclick="moveCarousel(1)">›</button>
+        </div>
+        <div class="carousel-indicators" id="carouselIndicators"></div>
+    </section>
+
+    <!-- Example Agents -->
+    <section class="example-agents">
+        <h2>Contoh AI Agent</h2>
+        <div class="example-grid">
+            <div class="example-card">
+                <div class="agent-photo" style="width: 80px; height: 80px; margin: 0 auto;">
+                    <div class="agent-photo-placeholder" style="font-size: 0.6rem;">
+                        <div>contoh1.png</div>
+                    </div>
+                </div>
+                <div>
+                    <h3>Timothy Ronald AI</h3>
+                    <p>Clone dari entrepreneur sukses Timothy Ronald</p>
+                </div>
+            </div>
+            <div class="example-card">
+                <div class="agent-photo" style="width: 80px; height: 80px; margin: 0 auto;">
+                    <div class="agent-photo-placeholder" style="font-size: 0.6rem;">
+                        <div>contoh2.png</div>
+                    </div>
+                </div>
+                <div>
+                    <h3>KDM AI</h3>
+                    <p>Clone dari mentor bisnis KDM</p>
+                </div>
+            </div>
+            <div class="example-card">
+                <div class="agent-photo" style="width: 80px; height: 80px; margin: 0 auto;">
+                    <div class="agent-photo-placeholder" style="font-size: 0.6rem;">
+                        <div>contoh3.png</div>
+                    </div>
+                </div>
+                <div>
+                    <h3>CaptGPT</h3>
+                    <p>AI Agent khusus untuk copywriting</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="video-container">
+            <div class="video-placeholder">
+                <div class="video-placeholder-icon">▶</div>
+                <div class="video-placeholder-content">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">video.mp4</div>
+                    <div style="font-size: 1rem; opacity: 0.8;">Video Demo AI Agent</div>
+                </div>
+            </div>
+            <button class="generator-btn" onclick="openGenerator()">AI Website Generator</button>
+        </div>
+    </section>
+
+    <!-- Websites Gallery -->
+    <section class="websites-gallery">
+        <h2>Website yang Telah Dibuat</h2>
+        <div class="websites-grid" id="websitesGrid">
+            <!-- 20 website cards akan di-generate oleh JavaScript -->
+        </div>
+    </section>
+
+    <!-- Social Media -->
+    <section class="social-media">
+        <h2>Ikuti Kami</h2>
+        <div class="social-links">
+            <a href="#" class="social-link">
+                <img src="facebook.png" alt="Facebook" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span style="display: none;">facebook.png</span>
+            </a>
+            <a href="#" class="social-link">
+                <img src="twitter.png" alt="Twitter" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span style="display: none;">twitter.png</span>
+            </a>
+            <a href="#" class="social-link">
+                <img src="instagram.png" alt="Instagram" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span style="display: none;">instagram.png</span>
+            </a>
+            <a href="#" class="social-link">
+                <img src="linkedin.png" alt="LinkedIn" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span style="display: none;">linkedin.png</span>
+            </a>
+            <a href="#" class="social-link">
+                <img src="tiktok.png" alt="TikTok" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span style="display: none;">tiktok.png</span>
+            </a>
+            <a href="#" class="social-link">
+                <img src="youtube.png" alt="YouTube" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span style="display: none;">youtube.png</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <img src="logo-square.png" alt="Clone Agentic Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="footer-logo-fallback" style="display: none;">logo-square.png<br><span style="font-size: 0.6rem; opacity: 0.8;">1x1</span></div>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Layanan</h3>
+                <p><a href="#">AI Agent Creation</a></p>
+                <p><a href="#">Custom Training</a></p>
+                <p><a href="#">API Integration</a></p>
+                <p><a href="#">Enterprise Solution</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Dukungan</h3>
+                <p><a href="#">Dokumentasi</a></p>
+                <p><a href="#">Tutorial</a></p>
+                <p><a href="#">Community</a></p>
+                <p><a href="#">Contact Support</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Perusahaan</h3>
+                <p><a href="#">Tentang Kami</a></p>
+                <p><a href="#">Karir</a></p>
+                <p><a href="#">Blog</a></p>
+                <p><a href="#">Press Kit</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Clone Agentic. Semua hak dilindungi. Dibuat dengan cinta untuk masa depan AI.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Membuat bintang-bintang
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const numberOfStars = 150;
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+
+
+        // Generate website cards
+        function generateWebsiteCards() {
+            const websitesGrid = document.getElementById('websitesGrid');
+            const websiteTypes = [
+                'E-commerce Store', 'Portfolio Website', 'Corporate Site', 'Blog Platform',
+                'Landing Page', 'Restaurant Menu', 'Real Estate', 'Education Portal',
+                'Healthcare Clinic', 'Travel Agency', 'Fashion Brand', 'Tech Startup',
+                'Photography Studio', 'Fitness Center', 'Music Band', 'Art Gallery',
+                'Consulting Firm', 'Food Delivery', 'Gaming Community', 'News Portal'
+            ];
+
+            for (let i = 0; i < 20; i++) {
+                const card = document.createElement('div');
+                card.className = 'website-card';
+                card.innerHTML = `
+                    <div class="website-preview">
+                        <div style="color: rgba(255, 255, 255, 0.7); font-size: 1rem; font-weight: 500;">
+                            website${i + 1}.png
+                        </div>
+                    </div>
+                    <div class="website-info">
+                        <h3>${websiteTypes[i]}</h3>
+                        <p>Website modern dan responsif dengan desain futuristik</p>
+                    </div>
+                `;
+                websitesGrid.appendChild(card);
+            }
+        }
+
+        // Fungsi untuk tombol
+        function startCloning() {
+            alert('Memulai proses cloning AI Agent! Siapkan data kepribadian yang ingin di-clone.');
+        }
+
+        function openGenerator() {
+            alert('Membuka AI Website Generator! Buat website impian Anda dalam hitungan menit.');
+        }
+
+        // Carousel functionality
+        let currentIndex = 0;
+        let totalCards = 0;
+        let cards = [];
+
+        function initCarousel() {
+            const slider = document.getElementById('agentsSlider');
+            cards = Array.from(slider.children);
+            totalCards = cards.length;
+            
+            // Create indicators
+            const indicatorsContainer = document.getElementById('carouselIndicators');
+            indicatorsContainer.innerHTML = '';
+            for (let i = 0; i < totalCards; i++) {
+                const indicator = document.createElement('div');
+                indicator.className = 'indicator';
+                indicator.onclick = () => goToSlide(i);
+                indicatorsContainer.appendChild(indicator);
+            }
+            
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            cards.forEach((card, index) => {
+                // Remove all position classes
+                card.className = card.className.replace(/\b(center|left-1|left-2|right-1|right-2|hidden)\b/g, '').trim();
+                
+                const position = getCardPosition(index, currentIndex, totalCards);
+                card.classList.add(position);
+            });
+            
+            // Update indicators
+            const indicators = document.querySelectorAll('.indicator');
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        function getCardPosition(cardIndex, centerIndex, total) {
+            let diff = cardIndex - centerIndex;
+            
+            // Handle circular positioning
+            if (diff > total / 2) diff -= total;
+            if (diff < -total / 2) diff += total;
+            
+            if (diff === 0) return 'center';
+            if (diff === -1) return 'left-1';
+            if (diff === 1) return 'right-1';
+            if (diff === -2) return 'left-2';
+            if (diff === 2) return 'right-2';
+            return 'hidden';
+        }
+
+        function moveCarousel(direction) {
+            currentIndex += direction;
+            
+            // Handle infinite loop
+            if (currentIndex >= totalCards) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = totalCards - 1;
+            
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentIndex = index;
+            updateCarousel();
+        }
+
+        // Card click functionality
+        function handleCardClick(event) {
+            const card = event.currentTarget;
+            const cardIndex = parseInt(card.dataset.index);
+            
+            if (card.classList.contains('center')) {
+                // Center card clicked - could trigger deploy or details
+                return;
+            } else {
+                // Side card clicked - move to center
+                goToSlide(cardIndex);
+            }
+        }
+
+        // Deploy button functionality
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('deploy-btn')) {
+                const agentName = e.target.closest('.agent-info').querySelector('h3').textContent;
+                alert(`Deploying ${agentName}! AI Agent akan aktif dalam beberapa detik.`);
+                
+                // Animasi button
+                e.target.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    e.target.style.transform = 'scale(1)';
+                    e.target.textContent = 'Deployed ✓';
+                    e.target.style.background = 'linear-gradient(45deg, #00cc66, #00ff88)';
+                }, 200);
+                
+                setTimeout(() => {
+                    e.target.textContent = 'Deploy';
+                    e.target.style.background = 'linear-gradient(45deg, #0066ff, #00ccff)';
+                }, 3000);
+            }
+        });
+
+        // Search functionality
+        document.querySelector('.search-btn').addEventListener('click', () => {
+            const searchTerm = document.querySelector('.search-box').value;
+            if (searchTerm) {
+                alert(`Mencari AI Agent: "${searchTerm}"`);
+            }
+        });
+
+        document.querySelector('.search-box').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                document.querySelector('.search-btn').click();
+            }
+        });
+
+        // Removed parallax effect that was interfering with floating animations
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            createStars();
+            generateWebsiteCards();
+            initCarousel();
+            
+            // Add click handlers to cards
+            cards = document.querySelectorAll('.agent-card');
+            cards.forEach(card => {
+                card.addEventListener('click', handleCardClick);
+            });
+        });
+
+        // Smooth scroll untuk internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'981f5ca0d1913e11',t:'MTc1ODM1MDc0Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
