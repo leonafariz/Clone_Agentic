@@ -1488,15 +1488,30 @@
         // Generate website cards
         function generateWebsiteCards() {
             const websitesGrid = document.getElementById('websitesGrid');
-            const websiteTypes = [
-                'E-commerce Store', 'Portfolio Website', 'Corporate Site', 'Blog Platform',
-                'Landing Page', 'Restaurant Menu', 'Real Estate', 'Education Portal',
-                'Healthcare Clinic', 'Travel Agency', 'Fashion Brand', 'Tech Startup',
-                'Photography Studio', 'Fitness Center', 'Music Band', 'Art Gallery',
-                'Consulting Firm', 'Food Delivery', 'Gaming Community', 'News Portal'
+            const websites = [
+                { name: 'Portfolio', desc: 'Portofolio pribadi untuk menampilkan karya fotografi dengan tema minimalis.' },
+                { name: 'TechTrend', desc: 'Startup teknologi dengan tema inovasi digital dan solusi SaaS modern.' },
+                { name: 'ConnectSphere', desc: 'Aplikasi web dengan tema kolaborasi tim dan teknologi berbasis cloud.' },
+                { name: 'DesignHub', desc: 'Desain UI/UX dengan tema antarmuka intuitif dan estetika neumorphic.' },
+                { name: 'ArtRage', desc: 'Seni eksperimental dengan tema galeri digital bergaya brutalisme.' },
+                { name: 'VibeCafe', desc: 'Kafe tematik dengan tema retro 80-an dan gaya hidup vintage.' },
+                { name: 'AntiqueVault', desc: 'Toko antik dengan tema barang klasik dan nuansa sejarah.' },
+                { name: 'StreamDark', desc: 'Streaming dengan tema hiburan malam dan estetika dark mode.' },
+                { name: 'WealthFlow', desc: 'Fintech dengan tema alat keuangan cerdas dan desain glassmorphic.' },
+                { name: 'Wanderlust', desc: 'Perjalanan dengan tema petualangan alam dan efek parallax.' },
+                { name: 'EventPro', desc: 'Landing page acara dengan tema promosi event dan alur cerita tunggal.' },
+                { name: 'ShopEasy', desc: 'E-commerce dengan tema belanja online dan tata letak berbasis kartu.' },
+                { name: 'Newsroom', desc: 'Berita online dengan tema jurnalisme dan fokus tipografi.' },
+                { name: 'KidLearn', desc: 'Pendidikan anak dengan tema pembelajaran kreatif dan ilustrasi ceria.' },
+                { name: 'BlueLens', desc: 'Fotografi dengan tema studio profesional dan estetika monokrom.' },
+                { name: 'InnoTech', desc: 'Startup inovatif dengan tema teknologi mutakhir dan gradien modern.' },
+                { name: 'CraftWood', desc: 'Toko furnitur dengan tema desain klasik dan estetika skeuomorphic.' },
+                { name: 'ArtFlow', desc: 'Agensi kreatif dengan tema seni dinamis dan tata letak asimetris.' },
+                { name: 'TravelVibe', desc: 'Pariwisata dengan tema petualangan global dan hero image epik.' },
+                { name: 'GameZone', desc: 'Game interaktif dengan tema aplikasi mobile dan mikrointeraksi playful.' }
             ];
 
-            for (let i = 0; i < 20; i++) {
+            for (let i = 0; i < websites.length; i++) {
                 const card = document.createElement('div');
                 card.className = 'website-card';
                 card.innerHTML = `
@@ -1506,8 +1521,8 @@
                         </div>
                     </div>
                     <div class="website-info">
-                        <h3>${websiteTypes[i]}</h3>
-                        <p>Website modern dan responsif dengan desain futuristik</p>
+                        <h3>${websites[i].name}</h3>
+                        <p>${websites[i].desc}</p>
                     </div>
                 `;
                 websitesGrid.appendChild(card);
@@ -1670,5 +1685,5 @@
             });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9820c0cd242d603a',t:'MTc1ODM2NTMzNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98222a3967d0c261',t:'MTc1ODM4MDEzOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
