@@ -848,7 +848,9 @@
         .social-link {
             width: 60px;
             height: 60px;
-            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid;
+            border-image: linear-gradient(45deg, #ff00ff, #00ffff) 1;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -858,20 +860,46 @@
             color: white;
             transition: all 0.3s ease;
             position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            border-radius: 50%;
+            z-index: -1;
         }
 
         .social-link img {
-            width: 30px;
-            height: 30px;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
             filter: brightness(0) invert(1);
+            border-radius: 50%;
+            padding: 15px;
+            box-sizing: border-box;
         }
 
-        .social-link span {
-            font-size: 0.7rem;
+        .social-link .social-fallback {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
             color: white;
             text-align: center;
             font-weight: 500;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            padding: 8px;
+            box-sizing: border-box;
+            line-height: 1.2;
         }
 
         .social-link:hover {
@@ -1381,28 +1409,28 @@
         <h2>Ikuti Kami</h2>
         <div class="social-links">
             <a href="#" class="social-link">
-                <img src="facebook.png" alt="Facebook" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span style="display: none;">facebook.png</span>
+                <img src="facebook.png" alt="Facebook" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="social-fallback" style="display: none;">facebook.png</div>
             </a>
             <a href="#" class="social-link">
-                <img src="twitter.png" alt="Twitter" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span style="display: none;">twitter.png</span>
+                <img src="twitter.png" alt="Twitter" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="social-fallback" style="display: none;">twitter.png</div>
             </a>
             <a href="#" class="social-link">
-                <img src="instagram.png" alt="Instagram" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span style="display: none;">instagram.png</span>
+                <img src="instagram.png" alt="Instagram" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="social-fallback" style="display: none;">instagram.png</div>
             </a>
             <a href="#" class="social-link">
-                <img src="linkedin.png" alt="LinkedIn" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span style="display: none;">linkedin.png</span>
+                <img src="linkedin.png" alt="LinkedIn" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="social-fallback" style="display: none;">linkedin.png</div>
             </a>
             <a href="#" class="social-link">
-                <img src="tiktok.png" alt="TikTok" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span style="display: none;">tiktok.png</span>
+                <img src="tiktok.png" alt="TikTok" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="social-fallback" style="display: none;">tiktok.png</div>
             </a>
             <a href="#" class="social-link">
-                <img src="youtube.png" alt="YouTube" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span style="display: none;">youtube.png</span>
+                <img src="youtube.png" alt="YouTube" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="social-fallback" style="display: none;">youtube.png</div>
             </a>
         </div>
     </section>
@@ -1647,5 +1675,5 @@
             });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'981f951684799b9f',t:'MTc1ODM1MzA1OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9820b152540314b5',t:'MTc1ODM2NDcwMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
