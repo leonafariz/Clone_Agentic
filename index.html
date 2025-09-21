@@ -810,6 +810,31 @@
             align-items: center;
             justify-content: center;
             font-size: 2rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .website-preview-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .website-card:hover .website-preview-image {
+            transform: scale(1.05);
+        }
+
+        .website-preview-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #1a237e, #4a148c);
         }
 
         .website-info {
@@ -1516,8 +1541,9 @@
                 card.className = 'website-card';
                 card.innerHTML = `
                     <div class="website-preview">
-                        <div style="color: rgba(255, 255, 255, 0.7); font-size: 1rem; font-weight: 500;">
-                            website${i + 1}.png
+                        <img src="website${i + 1}.jpg" alt="${websites[i].name}" class="website-preview-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="website-preview-placeholder" style="display: none; color: rgba(255, 255, 255, 0.7); font-size: 1rem; font-weight: 500; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                            website${i + 1}.jpg
                         </div>
                     </div>
                     <div class="website-info">
@@ -1685,5 +1711,5 @@
             });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98222a3967d0c261',t:'MTc1ODM4MDEzOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9826904d2107feae',t:'MTc1ODQyNjI2Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
