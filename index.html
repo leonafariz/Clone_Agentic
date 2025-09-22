@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmic Explorer - Website Futuristik</title>
+    <title>Clone Agentic - Clona AI dari Manusia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,15 +13,14 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Inter', 'Segoe UI', 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
             background: linear-gradient(135deg, #1a0033 0%, #2d1b69 25%, #0f0f23 50%, #4a0e4e 75%, #000000 100%);
-            min-height: 100vh;
             color: white;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* Animasi bintang berkedip */
+        /* Animasi bintang */
         .stars {
             position: fixed;
             top: 0;
@@ -45,92 +45,86 @@
             50% { opacity: 1; }
         }
 
-        /* Header futuristik */
+        /* Header */
         .header {
             position: relative;
             z-index: 10;
-            padding: 2rem;
-            text-align: center;
+            padding: 1.5rem 2rem;
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo {
-            font-size: 2.5rem;
-            font-weight: bold;
-            background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
-        }
-
-        .tagline {
-            font-size: 1.2rem;
-            color: #b19cd9;
-            margin-bottom: 2rem;
-        }
-
-        /* Navigasi futuristik */
-        .nav {
+            height: 50px;
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
+            align-items: center;
         }
 
-        .nav-btn {
-            padding: 1rem 2rem;
-            background: linear-gradient(45deg, rgba(255, 0, 255, 0.2), rgba(0, 255, 255, 0.2));
-            border: 2px solid rgba(255, 255, 255, 0.3);
+        .logo img {
+            height: 50px;
+            width: 300px;
+            object-fit: contain;
+        }
+
+        .logo-fallback {
+            font-size: 1rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            padding: 0.5rem 1rem;
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-box {
+            padding: 0.8rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 25px;
             color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
+            outline: none;
             backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
+            width: 300px;
         }
 
-        .nav-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(255, 0, 255, 0.4);
-            border-color: #ff00ff;
+        .search-box::placeholder {
+            color: rgba(255, 255, 255, 0.6);
         }
 
-        .nav-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
+        .search-btn {
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
         }
 
-        .nav-btn:hover::before {
-            left: 100%;
-        }
-
-        /* Konten utama */
-        .main-content {
+        /* Hero Section */
+        .hero {
             position: relative;
             z-index: 10;
             padding: 4rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
 
-        .hero-section {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .hero-title {
+        .hero-content h1 {
             font-size: 3.5rem;
             font-weight: bold;
             margin-bottom: 1rem;
@@ -146,75 +140,14 @@
             to { text-shadow: 0 0 30px rgba(0, 255, 255, 0.8); }
         }
 
-        .hero-description {
+        .hero-content p {
             font-size: 1.3rem;
             color: #c9b3ff;
             margin-bottom: 2rem;
             line-height: 1.6;
         }
 
-        /* Kartu futuristik */
-        .cards-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #ff00ff, #00ffff, #ff69b4);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(255, 0, 255, 0.2);
-            border-color: rgba(255, 0, 255, 0.5);
-        }
-
-        .card-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .card-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            color: #ff69b4;
-        }
-
-        .card-description {
-            color: #b19cd9;
-            line-height: 1.6;
-        }
-
-        /* Tombol aksi */
-        .cta-button {
-            display: inline-block;
+        .hero-btn {
             padding: 1.2rem 3rem;
             background: linear-gradient(45deg, #ff00ff, #00ffff);
             border: none;
@@ -222,51 +155,939 @@
             color: white;
             font-size: 1.1rem;
             font-weight: bold;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            margin-top: 2rem;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
-        .cta-button:hover {
+        .hero-btn:hover {
             transform: scale(1.05);
             box-shadow: 0 15px 30px rgba(255, 0, 255, 0.4);
         }
 
-        .cta-button::after {
+        .hero-image {
+            position: relative;
+        }
+
+        .super-agentic-container {
+            position: relative;
+            z-index: 10;
+        }
+
+        .super-agentic-image {
+            width: 100%;
+            height: auto;
+            max-width: 400px;
+            filter: drop-shadow(0 0 30px rgba(147, 51, 234, 0.5));
+        }
+
+        .floating {
+            animation: floating 6s ease-in-out infinite !important;
+        }
+
+        .floating-fast {
+            animation: floating 3s ease-in-out infinite !important;
+        }
+
+        .floating-slow {
+            animation: floating 8s ease-in-out infinite !important;
+        }
+
+        .floating-medium {
+            animation: floating-medium 5s ease-in-out infinite !important;
+        }
+
+        .floating-ultra-slow {
+            animation: floating-ultra-slow 12s ease-in-out infinite !important;
+        }
+
+        .floating-ultra-fast {
+            animation: floating-ultra-fast 2s ease-in-out infinite !important;
+        }
+
+        .floating-reverse {
+            animation: floating-reverse 7s ease-in-out infinite !important;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-40px); }
+        }
+
+        @keyframes floating-medium {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-35px) rotate(10deg); }
+        }
+
+        @keyframes floating-ultra-slow {
+            0%, 100% { transform: translateY(0px) rotate(45deg); }
+            50% { transform: translateY(-50px) rotate(55deg); }
+        }
+
+        @keyframes floating-ultra-fast {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-25px) scale(1.2); }
+        }
+
+        @keyframes floating-reverse {
+            0%, 100% { transform: translateY(-30px) rotate(30deg); }
+            50% { transform: translateY(10px) rotate(40deg); }
+        }
+
+        .purple-glow {
+            box-shadow: 0 0 20px rgba(147, 51, 234, 0.6);
+            animation: pulseGlow 2s ease-in-out infinite alternate;
+        }
+
+        .blue-glow {
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+            animation: pulseGlow 2.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            from { box-shadow: 0 0 20px rgba(147, 51, 234, 0.4); }
+            to { box-shadow: 0 0 30px rgba(147, 51, 234, 0.8); }
+        }
+
+        .pulse {
+            opacity: 0.7;
+        }
+
+
+
+        /* Stats Section */
+        .stats {
+            margin: 4rem auto;
+            max-width: 1000px;
+            padding: 0 2rem;
+        }
+
+        .stats-container {
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(0, 255, 255, 0.1));
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 60px;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(255, 0, 255, 0.2);
+        }
+
+        .stats-container::before {
             content: '';
             position: absolute;
-            top: 50%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            position: relative;
+        }
+
+        .stat-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 20%;
+            bottom: 20%;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3), transparent);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff00ff, #00ffff, #ff69b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 30px rgba(255, 0, 255, 0.5);
+            animation: pulse-glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            from { 
+                filter: drop-shadow(0 0 10px rgba(255, 0, 255, 0.5));
+                transform: scale(1);
+            }
+            to { 
+                filter: drop-shadow(0 0 20px rgba(0, 255, 255, 0.8));
+                transform: scale(1.05);
+            }
+        }
+
+        .stat-label {
+            color: #e0d4ff;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+
+        .stat-label::before {
+            content: '';
+            position: absolute;
+            bottom: -8px;
             left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-50%);
+            width: 30px;
+            height: 2px;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            border-radius: 1px;
+        }
+
+        /* Floating particles around stats */
+        .stats-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 0, 255, 0.6);
             border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
+            animation: float-particle 8s ease-in-out infinite;
         }
 
-        .cta-button:active::after {
-            width: 300px;
-            height: 300px;
+        .stats-particle:nth-child(2) {
+            background: rgba(0, 255, 255, 0.6);
+            animation-delay: -2s;
+            animation-duration: 6s;
         }
 
-        /* Responsif */
+        .stats-particle:nth-child(3) {
+            background: rgba(255, 105, 180, 0.6);
+            animation-delay: -4s;
+            animation-duration: 10s;
+        }
+
+        @keyframes float-particle {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px);
+                opacity: 0;
+            }
+            10%, 90% {
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-30px) translateX(20px);
+            }
+        }
+
+        /* Integrations */
+        .integrations {
+            padding: 4rem 0;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .integrations h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: #ff69b4;
+        }
+
+        .integration-scroll {
+            display: flex;
+            animation: scroll 20s linear infinite;
+            gap: 3rem;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .integration-logo {
+            min-width: 150px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .integration-logo:hover {
+            color: #00ffff;
+        }
+
+        /* Role Agents Section */
+        .role-agents {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .role-agents h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ff69b4;
+        }
+
+        .carousel-container {
+            position: relative;
+            height: 500px;
+            overflow: visible;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 100px;
+        }
+
+        .agents-slider {
+            display: flex;
+            position: relative;
+            width: calc(100% + 200px);
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            margin: 0 -100px;
+            overflow: visible;
+        }
+
+        .agent-card {
+            position: absolute;
+            width: 280px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            opacity: 0.6;
+            transform: scale(0.8) translateZ(0);
+        }
+
+        .agent-card.center {
+            opacity: 1;
+            transform: scale(1.1) translateZ(10px);
+            z-index: 10;
+            box-shadow: 0 25px 50px rgba(255, 0, 255, 0.4);
+            border: 2px solid rgba(255, 0, 255, 0.5);
+        }
+
+        .agent-card.left-1 {
+            transform: translateX(-320px) scale(0.9) rotateY(15deg);
+            opacity: 0.8;
+            z-index: 5;
+        }
+
+        .agent-card.right-1 {
+            transform: translateX(320px) scale(0.9) rotateY(-15deg);
+            opacity: 0.8;
+            z-index: 5;
+        }
+
+        .agent-card.left-2 {
+            transform: translateX(-640px) scale(0.7) rotateY(25deg);
+            opacity: 0.4;
+            z-index: 2;
+        }
+
+        .agent-card.right-2 {
+            transform: translateX(640px) scale(0.7) rotateY(-25deg);
+            opacity: 0.4;
+            z-index: 2;
+        }
+
+        .agent-card.hidden {
+            opacity: 0;
+            transform: scale(0.5);
+            z-index: 1;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(255, 0, 255, 0.3);
+        }
+
+        .carousel-nav:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 15px 30px rgba(255, 0, 255, 0.5);
+        }
+
+        .carousel-nav.prev {
+            left: 20px;
+        }
+
+        .carousel-nav.next {
+            right: 20px;
+        }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 2rem;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            transform: scale(1.2);
+        }
+
+        .agent-photo {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(45deg, #1a237e, #4a148c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .agent-photo-placeholder {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            font-weight: 500;
+            text-align: center;
+            width: 280px;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+        }
+
+        .agent-photo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .agent-info {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            background: linear-gradient(135deg, #2d1b69 0%, #4a0e4e 50%, #1a0033 100%);
+        }
+
+        .agent-content {
+            flex: 1;
+        }
+
+        .agent-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .agent-card p {
+            color: #e0d4ff;
+            font-size: 0.9rem;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .agent-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #ffd700;
+            font-weight: 500;
+        }
+
+        .deploy-btn {
+            padding: 0.6rem 1.2rem;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 15px rgba(255, 0, 255, 0.3);
+        }
+
+        .deploy-btn:hover {
+            background: linear-gradient(45deg, #e600e6, #00e6e6);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 0, 255, 0.5);
+        }
+
+        /* Example Agents */
+        .example-agents {
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .example-agents h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ff69b4;
+        }
+
+        .example-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .example-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .example-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 0, 255, 0.2);
+        }
+
+        /* Video Section */
+        .video-section {
+            padding: 4rem 2rem;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .video-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, #1a237e, #4a148c);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            position: relative;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+        }
+
+        .video-placeholder-content {
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .video-placeholder-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.6;
+        }
+
+        .generator-btn {
+            padding: 1.5rem 3rem;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .generator-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(255, 0, 255, 0.4);
+        }
+
+        /* Websites Gallery */
+        .websites-gallery {
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .websites-gallery h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ff69b4;
+        }
+
+        .websites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .website-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .website-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 0, 255, 0.2);
+        }
+
+        .website-preview {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(45deg, #1a237e, #4a148c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .website-preview-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .website-card:hover .website-preview-image {
+            transform: scale(1.05);
+        }
+
+        .website-preview-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #1a237e, #4a148c);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-align: center;
+            padding: 1rem;
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+        }
+
+        .website-preview-placeholder .placeholder-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.6;
+        }
+
+        .website-preview-placeholder .placeholder-text {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            line-height: 1.3;
+        }
+
+        .website-info {
+            padding: 1.5rem;
+        }
+
+        .website-info h3 {
+            color: #ff69b4;
+            margin-bottom: 0.5rem;
+        }
+
+        .website-info p {
+            color: #c9b3ff;
+            font-size: 0.9rem;
+        }
+
+        /* Social Media */
+        .social-media {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .social-media h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #ff69b4;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .social-link img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .social-link .social-fallback {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            color: white;
+            text-align: center;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            padding: 8px;
+            box-sizing: border-box;
+            line-height: 1.2;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(255, 0, 255, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #ff69b4;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-logo img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+        }
+
+        .footer-logo-fallback {
+            width: 120px;
+            height: 120px;
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #c9b3ff;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: #ff00ff;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1rem;
+            color: #c9b3ff;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .hero-title {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-content h1 {
                 font-size: 2.5rem;
             }
             
-            .nav {
-                flex-direction: column;
-                align-items: center;
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
             }
             
-            .nav-btn {
+            .stat-item:nth-child(2)::after,
+            .stat-item:nth-child(4)::after {
+                display: none;
+            }
+            
+            .stat-item:nth-child(1)::after,
+            .stat-item:nth-child(3)::after {
+                right: 0;
+                top: 20%;
+                bottom: 20%;
+                width: 1px;
+                background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3), transparent);
+            }
+            
+            .search-box {
                 width: 200px;
-                text-align: center;
+            }
+            
+            .robot-img {
+                width: 300px;
+                height: 300px;
+                font-size: 6rem;
+            }
+            
+            /* Carousel responsive */
+            .carousel-container {
+                height: 400px;
+                padding: 40px 60px;
+            }
+            
+            .agent-card {
+                width: 240px;
+            }
+            
+            .agent-card.left-1, .agent-card.right-1 {
+                transform: translateX(-260px) scale(0.85);
+            }
+            
+            .agent-card.right-1 {
+                transform: translateX(260px) scale(0.85);
+            }
+            
+            .agent-card.left-2, .agent-card.right-2 {
+                display: none;
+            }
+            
+            .carousel-nav {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+            
+            .carousel-nav.prev {
+                left: 10px;
+            }
+            
+            .carousel-nav.next {
+                right: 10px;
             }
         }
     </style>
@@ -277,67 +1098,688 @@
 
     <!-- Header -->
     <header class="header">
-        <div class="logo">COSMIC EXPLORER</div>
-        <div class="tagline">Jelajahi Masa Depan Digital</div>
-        <nav class="nav">
-            <a href="#" class="nav-btn">Beranda</a>
-            <a href="#" class="nav-btn">Eksplorasi</a>
-            <a href="#" class="nav-btn">Teknologi</a>
-            <a href="#" class="nav-btn">Kontak</a>
-        </nav>
+        <div class="logo">
+            <img src="logo.png" alt="Clone Agentic Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="logo-fallback" style="display: none;">logo.png<br><span style="font-size: 0.8rem; opacity: 0.8;">1822 x 392</span></div>
+        </div>
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="Cari AI Agent...">
+            <button class="search-btn">Search</button>
+        </div>
     </header>
 
-    <!-- Konten Utama -->
-    <main class="main-content">
-        <section class="hero-section">
-            <h1 class="hero-title">Selamat Datang di Masa Depan</h1>
-            <p class="hero-description">
-                Rasakan pengalaman digital yang tak terbatas dalam perjalanan kosmik menuju teknologi masa depan. 
-                Bergabunglah dengan kami dalam eksplorasi dimensi baru dunia digital.
-            </p>
-            <button class="cta-button" onclick="startExploration()">Mulai Eksplorasi</button>
-        </section>
-
-        <section class="cards-container">
-            <div class="card">
-                <span class="card-icon">🚀</span>
-                <h3 class="card-title">Teknologi Canggih</h3>
-                <p class="card-description">
-                    Jelajahi teknologi terdepan yang mengubah cara kita berinteraksi dengan dunia digital.
-                </p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Clone Agentic</h1>
+            <p>Clona AI dari sebuah manusia. Ciptakan AI Agent yang dapat meniru kepribadian, gaya bicara, dan keahlian seseorang dengan teknologi terdepan.</p>
+            <button class="hero-btn" onclick="startCloning()">Mulai Cloning</button>
+        </div>
+        <div class="hero-image">
+            <div class="relative">
+                <div class="w-full h-80 md:h-96 lg:h-[500px] relative" style="width: 100%; height: 320px;">
+                    <!-- AI Visualization - Replace with super_agentic.png -->
+                    <div class="absolute inset-0 flex items-center justify-center" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center;">
+                        <!-- Placeholder for super_agentic.png with floating animation -->
+                        <div class="super-agentic-container floating">
+                            <!-- This is where you'll place your transparent PNG image -->
+                            <img src="super_agentic.png" alt="Super Agentic AI" class="super-agentic-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div style="display: none; color: rgba(255, 255, 255, 0.7); font-size: 1.2rem; text-align: center;">super_agentic.png<br><span style="font-size: 0.9rem; opacity: 0.8;">AI Visualization Image</span></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating Elements -->
+                    <div class="absolute purple-glow floating-fast" style="position: absolute; top: 40px; left: 40px; width: 48px; height: 48px; border-radius: 8px; background: linear-gradient(135deg, rgba(147, 51, 234, 0.4), rgba(59, 130, 246, 0.4));"></div>
+                    <div class="absolute blue-glow floating-slow" style="position: absolute; bottom: 80px; right: 40px; width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(147, 51, 234, 0.4));"></div>
+                    <div class="absolute purple-glow floating" style="position: absolute; top: 50%; right: 25%; width: 32px; height: 32px; border-radius: 4px; background: linear-gradient(135deg, rgba(147, 51, 234, 0.4), rgba(59, 130, 246, 0.4));"></div>
+                    
+                    <!-- Additional Floating Elements -->
+                    <div class="absolute blue-glow floating-medium" style="position: absolute; top: 20%; left: 20%; width: 40px; height: 40px; border-radius: 50%; background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(147, 51, 234, 0.4));"></div>
+                    <div class="absolute purple-glow floating-ultra-slow" style="position: absolute; bottom: 30%; left: 15%; width: 28px; height: 28px; border-radius: 6px; background: linear-gradient(135deg, rgba(147, 51, 234, 0.4), rgba(59, 130, 246, 0.4)); transform: rotate(45deg);"></div>
+                    <div class="absolute blue-glow floating-ultra-fast" style="position: absolute; top: 30%; right: 15%; width: 36px; height: 36px; border-radius: 18px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.4), rgba(147, 51, 234, 0.4));"></div>
+                    <div class="absolute purple-glow floating-reverse" style="position: absolute; bottom: 50%; left: 30%; width: 24px; height: 24px; border-radius: 2px; background: linear-gradient(135deg, rgba(147, 51, 234, 0.4), rgba(59, 130, 246, 0.4)); transform: rotate(30deg);"></div>
+                    
+                    <!-- Connection Lines -->
+                    <svg class="absolute inset-0 w-full h-full pulse" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="250" y1="250" x2="100" y2="100" stroke="url(#purpleGradient)" stroke-width="1" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" from="0" to="100" dur="10s" repeatCount="indefinite"></animate>
+                        </line>
+                        <line x1="250" y1="250" x2="400" y2="100" stroke="url(#blueGradient)" stroke-width="1" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" from="0" to="-100" dur="8s" repeatCount="indefinite"></animate>
+                        </line>
+                        <line x1="250" y1="250" x2="400" y2="400" stroke="url(#purpleGradient)" stroke-width="1" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" from="0" to="100" dur="12s" repeatCount="indefinite"></animate>
+                        </line>
+                        <line x1="250" y1="250" x2="100" y2="400" stroke="url(#blueGradient)" stroke-width="1" stroke-dasharray="5,5">
+                            <animate attributeName="stroke-dashoffset" from="0" to="-100" dur="9s" repeatCount="indefinite"></animate>
+                        </line>
+                        
+                        <defs>
+                            <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="rgba(147, 51, 234, 0.3)"></stop>
+                                <stop offset="100%" stop-color="rgba(147, 51, 234, 0)"></stop>
+                            </linearGradient>
+                            <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="rgba(59, 130, 246, 0.3)"></stop>
+                                <stop offset="100%" stop-color="rgba(59, 130, 246, 0)"></stop>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <div class="card">
-                <span class="card-icon">🌌</span>
-                <h3 class="card-title">Eksplorasi Galaksi</h3>
-                <p class="card-description">
-                    Temukan keajaiban alam semesta melalui pengalaman virtual yang memukau.
-                </p>
+    <!-- Stats -->
+    <section class="stats">
+        <div class="stats-container">
+            <!-- Floating particles -->
+            <div class="stats-particle" style="top: 20%; left: 10%;"></div>
+            <div class="stats-particle" style="top: 60%; right: 15%;"></div>
+            <div class="stats-particle" style="bottom: 30%; left: 80%;"></div>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">9</div>
+                    <div class="stat-label">Role</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">15</div>
+                    <div class="stat-label">User</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">27</div>
+                    <div class="stat-label">AI Agent</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1829</div>
+                    <div class="stat-label">Conversation</div>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <div class="card">
-                <span class="card-icon">⚡</span>
-                <h3 class="card-title">Kecepatan Cahaya</h3>
-                <p class="card-description">
-                    Nikmati performa super cepat yang membawa Anda ke dimensi baru pengalaman digital.
-                </p>
-            </div>
+    <!-- Integrations -->
+    <section class="integrations">
+        <h2>Integrations</h2>
+        <div class="integration-scroll">
+            <div class="integration-logo">integration1.png</div>
+            <div class="integration-logo">integration2.png</div>
+            <div class="integration-logo">integration3.png</div>
+            <div class="integration-logo">integration4.png</div>
+            <div class="integration-logo">integration5.png</div>
+            <div class="integration-logo">integration6.png</div>
+            <div class="integration-logo">integration7.png</div>
+            <div class="integration-logo">integration8.png</div>
+            <!-- Duplikat untuk scroll seamless -->
+            <div class="integration-logo">integration1.png</div>
+            <div class="integration-logo">integration2.png</div>
+            <div class="integration-logo">integration3.png</div>
+            <div class="integration-logo">integration4.png</div>
+            <div class="integration-logo">integration5.png</div>
+            <div class="integration-logo">integration6.png</div>
+            <div class="integration-logo">integration7.png</div>
+            <div class="integration-logo">integration8.png</div>
+        </div>
+    </section>
 
-            <div class="card">
-                <span class="card-icon">🔮</span>
-                <h3 class="card-title">Visi Masa Depan</h3>
-                <p class="card-description">
-                    Saksikan bagaimana teknologi akan mengubah kehidupan kita di masa yang akan datang.
-                </p>
+    <!-- Role Agents -->
+    <section class="role-agents">
+        <h2>Role AI Agent</h2>
+        <div class="carousel-container">
+            <button class="carousel-nav prev" onclick="moveCarousel(-1)">‹</button>
+            <div class="agents-slider" id="agentsSlider">
+                <div class="agent-card" data-index="0">
+                    <div class="agent-photo">
+                        <img src="role1.png" alt="Customer Service" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="agent-photo-placeholder" style="display: none;">role1.png</div>
+                    </div>
+                    <div class="agent-info">
+                        <div class="agent-content">
+                            <h3>Customer Service</h3>
+                            <p>Layanan pelanggan 24/7 yang ramah</p>
+                        </div>
+                        <div class="agent-actions">
+                            <button class="deploy-btn">Deploy</button>
+                            <div class="rating">4.9⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card" data-index="1">
+                    <div class="agent-photo">
+                        <img src="role2.png" alt="Sales" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="agent-photo-placeholder" style="display: none;">role2.png</div>
+                    </div>
+                    <div class="agent-info">
+                        <div class="agent-content">
+                            <h3>Sales</h3>
+                            <p>Tenaga penjualan profesional</p>
+                        </div>
+                        <div class="agent-actions">
+                            <button class="deploy-btn">Deploy</button>
+                            <div class="rating">4.8⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card" data-index="2">
+                    <div class="agent-photo">
+                        <img src="role3.png" alt="Konsultan" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="agent-photo-placeholder" style="display: none;">role3.png</div>
+                    </div>
+                    <div class="agent-info">
+                        <div class="agent-content">
+                            <h3>Konsultan</h3>
+                            <p>Konsultan ahli di berbagai bidang</p>
+                        </div>
+                        <div class="agent-actions">
+                            <button class="deploy-btn">Deploy</button>
+                            <div class="rating">4.9⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card" data-index="3">
+                    <div class="agent-photo">
+                        <img src="role4.png" alt="Artis" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="agent-photo-placeholder" style="display: none;">role4.png</div>
+                    </div>
+                    <div class="agent-info">
+                        <div class="agent-content">
+                            <h3>Artis</h3>
+                            <p>Seniman kreatif dan inspiratif</p>
+                        </div>
+                        <div class="agent-actions">
+                            <button class="deploy-btn">Deploy</button>
+                            <div class="rating">4.7⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card" data-index="4">
+                    <div class="agent-photo">
+                        <img src="role5.png" alt="Coach/Mentor" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="agent-photo-placeholder" style="display: none;">role5.png</div>
+                    </div>
+                    <div class="agent-info">
+                        <div class="agent-content">
+                            <h3>Coach/Mentor</h3>
+                            <p>Pembimbing dan pelatih berpengalaman</p>
+                        </div>
+                        <div class="agent-actions">
+                            <button class="deploy-btn">Deploy</button>
+                            <div class="rating">4.9⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card" data-index="5">
+                    <div class="agent-photo">
+                        <img src="role6.png" alt="Tour Guide" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="agent-photo-placeholder" style="display: none;">role6.png</div>
+                    </div>
+                    <div class="agent-info">
+                        <div class="agent-content">
+                            <h3>Tour Guide</h3>
+                            <p>Pemandu wisata yang berpengalaman</p>
+                        </div>
+                        <div class="agent-actions">
+                            <button class="deploy-btn">Deploy</button>
+                            <div class="rating">4.6⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card" data-index="6">
+                    <div class="agent-photo">
+                        <img src="role7.png" alt="Sejarawan" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="agent-photo-placeholder" style="display: none;">role7.png</div>
+                    </div>
+                    <div class="agent-info">
+                        <div class="agent-content">
+                            <h3>Sejarawan</h3>
+                            <p>Ahli sejarah dengan pengetahuan luas</p>
+                        </div>
+                        <div class="agent-actions">
+                            <button class="deploy-btn">Deploy</button>
+                            <div class="rating">4.8⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card" data-index="7">
+                    <div class="agent-photo">
+                        <img src="role8.png" alt="Tokoh Inspiratif" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="agent-photo-placeholder" style="display: none;">role8.png</div>
+                    </div>
+                    <div class="agent-info">
+                        <div class="agent-content">
+                            <h3>Tokoh Inspiratif</h3>
+                            <p>Figur motivasi dan inspirasi</p>
+                        </div>
+                        <div class="agent-actions">
+                            <button class="deploy-btn">Deploy</button>
+                            <div class="rating">4.9⭐</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="agent-card" data-index="8">
+                    <div class="agent-photo">
+                        <img src="role9.png" alt="Karakter Fiksi" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="agent-photo-placeholder" style="display: none;">role9.png</div>
+                    </div>
+                    <div class="agent-info">
+                        <div class="agent-content">
+                            <h3>Karakter Fiksi</h3>
+                            <p>Karakter dari dunia fantasi dan fiksi</p>
+                        </div>
+                        <div class="agent-actions">
+                            <button class="deploy-btn">Deploy</button>
+                            <div class="rating">4.5⭐</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
-    </main>
+            <button class="carousel-nav next" onclick="moveCarousel(1)">›</button>
+        </div>
+        <div class="carousel-indicators" id="carouselIndicators"></div>
+    </section>
+
+    <!-- Example Agents -->
+    <section class="example-agents">
+        <h2>Contoh AI Agent</h2>
+        <div class="example-grid">
+            <div class="example-card">
+                <div class="agent-photo" style="width: 80px; height: 80px; margin: 0 auto;">
+                    <img src="contoh1.png" alt="Timothy Ronald AI" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="agent-photo-placeholder" style="font-size: 0.6rem; display: none;">
+                        <div>contoh1.png</div>
+                    </div>
+                </div>
+                <div>
+                    <h3>Timothy Ronald AI</h3>
+                    <p>Clone dari entrepreneur sukses Timothy Ronald</p>
+                </div>
+            </div>
+            <div class="example-card">
+                <div class="agent-photo" style="width: 80px; height: 80px; margin: 0 auto;">
+                    <img src="contoh2.png" alt="KDM AI" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="agent-photo-placeholder" style="font-size: 0.6rem; display: none;">
+                        <div>contoh2.png</div>
+                    </div>
+                </div>
+                <div>
+                    <h3>KDM AI</h3>
+                    <p>Clone dari mentor bisnis KDM</p>
+                </div>
+            </div>
+            <div class="example-card">
+                <div class="agent-photo" style="width: 80px; height: 80px; margin: 0 auto;">
+                    <img src="contoh3.png" alt="CaptGPT" class="agent-photo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="agent-photo-placeholder" style="font-size: 0.6rem; display: none;">
+                        <div>contoh3.png</div>
+                    </div>
+                </div>
+                <div>
+                    <h3>CaptGPT</h3>
+                    <p>AI Agent khusus untuk copywriting</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <div class="video-container">
+            <div class="video-placeholder">
+                <div class="video-placeholder-icon">▶</div>
+                <div class="video-placeholder-content">
+                    <div style="font-size: 1.5rem; margin-bottom: 0.5rem;">video.mp4</div>
+                    <div style="font-size: 1rem; opacity: 0.8;">Video Demo AI Agent</div>
+                </div>
+            </div>
+            <button class="generator-btn" onclick="openGenerator()">AI Website Generator</button>
+        </div>
+    </section>
+
+    <!-- Websites Gallery -->
+    <section class="websites-gallery">
+        <h2>Website yang Telah Dibuat</h2>
+        <div class="websites-grid" id="websitesGrid">
+            <div class="website-card">
+                <div class="website-preview">
+                    <img src="website1.jpg" alt="Portfolio" class="website-preview-image" onerror="handleImageError(this, 'website1.jpg', '🖼️')">
+                    <div class="website-preview-placeholder" style="display: none;">
+                        <div class="placeholder-icon">🖼️</div>
+                        <div class="placeholder-text">
+                            <strong>website1.jpg</strong><br>
+                            Portfolio Website<br>
+                            <small>Image not found</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="website-info">
+                    <h3>Portfolio</h3>
+                    <p>Portofolio pribadi untuk menampilkan karya fotografi dengan tema minimalis.</p>
+                </div>
+            </div>
+            <div class="website-card">
+                <div class="website-preview">
+                    <img src="website2.jpg" alt="TechTrend" class="website-preview-image" onerror="handleImageError(this, 'website2.jpg', '💻')">
+                    <div class="website-preview-placeholder" style="display: none;">
+                        <div class="placeholder-icon">💻</div>
+                        <div class="placeholder-text">
+                            <strong>website2.jpg</strong><br>
+                            TechTrend Website<br>
+                            <small>Image not found</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="website-info">
+                    <h3>TechTrend</h3>
+                    <p>Startup teknologi dengan tema inovasi digital dan solusi SaaS modern.</p>
+                </div>
+            </div>
+            <div class="website-card">
+                <div class="website-preview">
+                    <img src="website3.jpg" alt="ConnectSphere" class="website-preview-image" onerror="handleImageError(this, 'website3.jpg', '🌐')">
+                    <div class="website-preview-placeholder" style="display: none;">
+                        <div class="placeholder-icon">🌐</div>
+                        <div class="placeholder-text">
+                            <strong>website3.jpg</strong><br>
+                            ConnectSphere Website<br>
+                            <small>Image not found</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="website-info">
+                    <h3>ConnectSphere</h3>
+                    <p>Aplikasi web dengan tema kolaborasi tim dan teknologi berbasis cloud.</p>
+                </div>
+            </div>
+            <div class="website-card">
+                <div class="website-preview">
+                    <img src="website4.jpg" alt="DesignHub" class="website-preview-image" onerror="handleImageError(this, 'website4.jpg', '🎨')">
+                    <div class="website-preview-placeholder" style="display: none;">
+                        <div class="placeholder-icon">🎨</div>
+                        <div class="placeholder-text">
+                            <strong>website4.jpg</strong><br>
+                            DesignHub Website<br>
+                            <small>Image not found</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="website-info">
+                    <h3>DesignHub</h3>
+                    <p>Desain UI/UX dengan tema antarmuka intuitif dan estetika neumorphic.</p>
+                </div>
+            </div>
+            <div class="website-card">
+                <div class="website-preview">
+                    <img src="website5.jpg" alt="ArtRage" class="website-preview-image" onerror="handleImageError(this, 'website5.jpg', '🎭')">
+                    <div class="website-preview-placeholder" style="display: none;">
+                        <div class="placeholder-icon">🎭</div>
+                        <div class="placeholder-text">
+                            <strong>website5.jpg</strong><br>
+                            ArtRage Website<br>
+                            <small>Image not found</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="website-info">
+                    <h3>ArtRage</h3>
+                    <p>Seni eksperimental dengan tema galeri digital bergaya brutalisme.</p>
+                </div>
+            </div>
+            <div class="website-card">
+                <div class="website-preview">
+                    <img src="website6.jpg" alt="VibeCafe" class="website-preview-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="website-preview-placeholder" style="display: none; color: rgba(255, 255, 255, 0.7); font-size: 1rem; font-weight: 500; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        website6.jpg
+                    </div>
+                </div>
+                <div class="website-info">
+                    <h3>VibeCafe</h3>
+                    <p>Kafe tematik dengan tema retro 80-an dan gaya hidup vintage.</p>
+                </div>
+            </div>
+            <div class="website-card">
+                <div class="website-preview">
+                    <img src="website7.jpg" alt="AntiqueVault" class="website-preview-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="website-preview-placeholder" style="display: none; color: rgba(255, 255, 255, 0.7); font-size: 1rem; font-weight: 500; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        website7.jpg
+                    </div>
+                </div>
+                <div class="website-info">
+                    <h3>AntiqueVault</h3>
+                    <p>Toko antik dengan tema barang klasik dan nuansa sejarah.</p>
+                </div>
+            </div>
+            <div class="website-card">
+                <div class="website-preview">
+                    <img src="website8.jpg" alt="StreamDark" class="website-preview-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="website-preview-placeholder" style="display: none; color: rgba(255, 255, 255, 0.7); font-size: 1rem; font-weight: 500; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        website8.jpg
+                    </div>
+                </div>
+                <div class="website-info">
+                    <h3>StreamDark</h3>
+                    <p>Streaming dengan tema hiburan malam dan estetika dark mode.</p>
+                </div>
+            </div>
+            <div class="website-card">
+                <div class="website-preview">
+                    <img src="website9.jpg" alt="WealthFlow" class="website-preview-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="website-preview-placeholder" style="display: none; color: rgba(255, 255, 255, 0.7); font-size: 1rem; font-weight: 500; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        website9.jpg
+                    </div>
+                </div>
+                <div class="website-info">
+                    <h3>WealthFlow</h3>
+                    <p>Fintech dengan tema alat keuangan cerdas dan desain glassmorphic.</p>
+                </div>
+            </div>
+            <div class="website-card">
+                <div class="website-preview">
+                    <img src="website10.jpg" alt="Wanderlust" class="website-preview-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="website-preview-placeholder" style="display: none; color: rgba(255, 255, 255, 0.7); font-size: 1rem; font-weight: 500; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        website10.jpg
+                    </div>
+                </div>
+                <div class="website-info">
+                    <h3>Wanderlust</h3>
+                    <p>Perjalanan dengan tema petualangan alam dan efek parallax.</p>
+                </div>
+            </div>
+            <div class="website-card">
+                <div class="website-preview">
+                    <img src="website11.jpg" alt="EventPro" class="website-preview-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="website-preview-placeholder" style="display: none; color: rgba(255, 255, 255, 0.7); font-size: 1rem; font-weight: 500; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        website11.jpg
+                    </div>
+                </div>
+                <div class="website-info">
+                    <h3>EventPro</h3>
+                    <p>Landing page acara dengan tema promosi event dan alur cerita tunggal.</p>
+                </div>
+            </div>
+            <div class="website-card">
+                <div class="website-preview">
+                    <img src="website12.jpg" alt="ShopEasy" class="website-preview-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="website-preview-placeholder" style="display: none; color: rgba(255, 255, 255, 0.7); font-size: 1rem; font-weight: 500; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        website12.jpg
+                    </div>
+                </div>
+                <div class="website-info">
+                    <h3>ShopEasy</h3>
+                    <p>E-commerce dengan tema belanja online dan tata letak berbasis kartu.</p>
+                </div>
+            </div>
+            <div class="website-card">
+                <div class="website-preview">
+                    <img src="website13.jpg" alt="Newsroom" class="website-preview-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="website-preview-placeholder" style="display: none; color: rgba(255, 255, 255, 0.7); font-size: 1rem; font-weight: 500; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        website13.jpg
+                    </div>
+                </div>
+                <div class="website-info">
+                    <h3>Newsroom</h3>
+                    <p>Berita online dengan tema jurnalisme dan fokus tipografi.</p>
+                </div>
+            </div>
+            <div class="website-card">
+                <div class="website-preview">
+                    <img src="website14.jpg" alt="KidLearn" class="website-preview-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="website-preview-placeholder" style="display: none; color: rgba(255, 255, 255, 0.7); font-size: 1rem; font-weight: 500; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        website14.jpg
+                    </div>
+                </div>
+                <div class="website-info">
+                    <h3>KidLearn</h3>
+                    <p>Pendidikan anak dengan tema pembelajaran kreatif dan ilustrasi ceria.</p>
+                </div>
+            </div>
+            <div class="website-card">
+                <div class="website-preview">
+                    <img src="website15.jpg" alt="BlueLens" class="website-preview-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="website-preview-placeholder" style="display: none; color: rgba(255, 255, 255, 0.7); font-size: 1rem; font-weight: 500; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        website15.jpg
+                    </div>
+                </div>
+                <div class="website-info">
+                    <h3>BlueLens</h3>
+                    <p>Fotografi dengan tema studio profesional dan estetika monokrom.</p>
+                </div>
+            </div>
+            <div class="website-card">
+                <div class="website-preview">
+                    <img src="website16.jpg" alt="InnoTech" class="website-preview-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="website-preview-placeholder" style="display: none; color: rgba(255, 255, 255, 0.7); font-size: 1rem; font-weight: 500; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        website16.jpg
+                    </div>
+                </div>
+                <div class="website-info">
+                    <h3>InnoTech</h3>
+                    <p>Startup inovatif dengan tema teknologi mutakhir dan gradien modern.</p>
+                </div>
+            </div>
+            <div class="website-card">
+                <div class="website-preview">
+                    <img src="website17.jpg" alt="CraftWood" class="website-preview-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="website-preview-placeholder" style="display: none; color: rgba(255, 255, 255, 0.7); font-size: 1rem; font-weight: 500; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        website17.jpg
+                    </div>
+                </div>
+                <div class="website-info">
+                    <h3>CraftWood</h3>
+                    <p>Toko furnitur dengan tema desain klasik dan estetika skeuomorphic.</p>
+                </div>
+            </div>
+            <div class="website-card">
+                <div class="website-preview">
+                    <img src="website18.jpg" alt="ArtFlow" class="website-preview-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="website-preview-placeholder" style="display: none; color: rgba(255, 255, 255, 0.7); font-size: 1rem; font-weight: 500; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        website18.jpg
+                    </div>
+                </div>
+                <div class="website-info">
+                    <h3>ArtFlow</h3>
+                    <p>Agensi kreatif dengan tema seni dinamis dan tata letak asimetris.</p>
+                </div>
+            </div>
+            <div class="website-card">
+                <div class="website-preview">
+                    <img src="website19.jpg" alt="TravelVibe" class="website-preview-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="website-preview-placeholder" style="display: none; color: rgba(255, 255, 255, 0.7); font-size: 1rem; font-weight: 500; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        website19.jpg
+                    </div>
+                </div>
+                <div class="website-info">
+                    <h3>TravelVibe</h3>
+                    <p>Pariwisata dengan tema petualangan global dan hero image epik.</p>
+                </div>
+            </div>
+            <div class="website-card">
+                <div class="website-preview">
+                    <img src="website20.jpg" alt="GameZone" class="website-preview-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="website-preview-placeholder" style="display: none; color: rgba(255, 255, 255, 0.7); font-size: 1rem; font-weight: 500; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                        website20.jpg
+                    </div>
+                </div>
+                <div class="website-info">
+                    <h3>GameZone</h3>
+                    <p>Game interaktif dengan tema aplikasi mobile dan mikrointeraksi playful.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Media -->
+    <section class="social-media">
+        <h2>Ikuti Kami</h2>
+        <div class="social-links">
+            <a href="#" class="social-link">
+                <img src="facebook.png" alt="Facebook" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="social-fallback" style="display: none;">facebook.png</div>
+            </a>
+            <a href="#" class="social-link">
+                <img src="twitter.png" alt="Twitter" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="social-fallback" style="display: none;">twitter.png</div>
+            </a>
+            <a href="#" class="social-link">
+                <img src="instagram.png" alt="Instagram" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="social-fallback" style="display: none;">instagram.png</div>
+            </a>
+            <a href="#" class="social-link">
+                <img src="linkedin.png" alt="LinkedIn" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="social-fallback" style="display: none;">linkedin.png</div>
+            </a>
+            <a href="#" class="social-link">
+                <img src="tiktok.png" alt="TikTok" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="social-fallback" style="display: none;">tiktok.png</div>
+            </a>
+            <a href="#" class="social-link">
+                <img src="youtube.png" alt="YouTube" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="social-fallback" style="display: none;">youtube.png</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <img src="logo-square.png" alt="Clone Agentic Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="footer-logo-fallback" style="display: none;">logo-square.png<br><span style="font-size: 0.6rem; opacity: 0.8;">1x1</span></div>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Layanan</h3>
+                <p><a href="#">AI Agent Creation</a></p>
+                <p><a href="#">Custom Training</a></p>
+                <p><a href="#">API Integration</a></p>
+                <p><a href="#">Enterprise Solution</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Dukungan</h3>
+                <p><a href="#">Dokumentasi</a></p>
+                <p><a href="#">Tutorial</a></p>
+                <p><a href="#">Community</a></p>
+                <p><a href="#">Contact Support</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Perusahaan</h3>
+                <p><a href="#">Tentang Kami</a></p>
+                <p><a href="#">Karir</a></p>
+                <p><a href="#">Blog</a></p>
+                <p><a href="#">Press Kit</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Clone Agentic. Semua hak dilindungi. Dibuat dengan cinta untuk masa depan AI.</p>
+        </div>
+    </footer>
 
     <script>
-        // Membuat bintang-bintang berkedip
+        // Membuat bintang-bintang
         function createStars() {
             const starsContainer = document.getElementById('stars');
-            const numberOfStars = 100;
+            const numberOfStars = 150;
 
             for (let i = 0; i < numberOfStars; i++) {
                 const star = document.createElement('div');
@@ -350,53 +1792,203 @@
             }
         }
 
-        // Fungsi untuk tombol eksplorasi
-        function startExploration() {
-            // Efek ripple
-            const button = event.target;
-            
-            // Animasi zoom cards
-            const cards = document.querySelectorAll('.card');
-            cards.forEach((card, index) => {
-                setTimeout(() => {
-                    card.style.transform = 'translateY(-10px) scale(1.05)';
-                    setTimeout(() => {
-                        card.style.transform = 'translateY(0) scale(1)';
-                    }, 300);
-                }, index * 100);
-            });
 
-            // Pesan sambutan
-            setTimeout(() => {
-                alert('🚀 Selamat datang, Explorer! Perjalanan kosmik Anda dimulai sekarang!');
-            }, 800);
+
+
+
+        // Fungsi untuk tombol
+        function startCloning() {
+            alert('Memulai proses cloning AI Agent! Siapkan data kepribadian yang ingin di-clone.');
         }
 
-        // Efek parallax sederhana untuk bintang
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const stars = document.querySelectorAll('.star');
-            stars.forEach((star, index) => {
-                const speed = (index % 3 + 1) * 0.5;
-                star.style.transform = `translateY(${scrolled * speed}px)`;
+        function openGenerator() {
+            alert('Membuka AI Website Generator! Buat website impian Anda dalam hitungan menit.');
+        }
+
+        // Carousel functionality
+        let currentIndex = 0;
+        let totalCards = 0;
+        let cards = [];
+
+        function initCarousel() {
+            const slider = document.getElementById('agentsSlider');
+            cards = Array.from(slider.children);
+            totalCards = cards.length;
+            
+            // Create indicators
+            const indicatorsContainer = document.getElementById('carouselIndicators');
+            indicatorsContainer.innerHTML = '';
+            for (let i = 0; i < totalCards; i++) {
+                const indicator = document.createElement('div');
+                indicator.className = 'indicator';
+                indicator.onclick = () => goToSlide(i);
+                indicatorsContainer.appendChild(indicator);
+            }
+            
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            cards.forEach((card, index) => {
+                // Remove all position classes
+                card.className = card.className.replace(/\b(center|left-1|left-2|right-1|right-2|hidden)\b/g, '').trim();
+                
+                const position = getCardPosition(index, currentIndex, totalCards);
+                card.classList.add(position);
             });
+            
+            // Update indicators
+            const indicators = document.querySelectorAll('.indicator');
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentIndex);
+            });
+        }
+
+        function getCardPosition(cardIndex, centerIndex, total) {
+            let diff = cardIndex - centerIndex;
+            
+            // Handle circular positioning
+            if (diff > total / 2) diff -= total;
+            if (diff < -total / 2) diff += total;
+            
+            if (diff === 0) return 'center';
+            if (diff === -1) return 'left-1';
+            if (diff === 1) return 'right-1';
+            if (diff === -2) return 'left-2';
+            if (diff === 2) return 'right-2';
+            return 'hidden';
+        }
+
+        function moveCarousel(direction) {
+            currentIndex += direction;
+            
+            // Handle infinite loop
+            if (currentIndex >= totalCards) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = totalCards - 1;
+            
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentIndex = index;
+            updateCarousel();
+        }
+
+        // Card click functionality
+        function handleCardClick(event) {
+            const card = event.currentTarget;
+            const cardIndex = parseInt(card.dataset.index);
+            
+            if (card.classList.contains('center')) {
+                // Center card clicked - could trigger deploy or details
+                return;
+            } else {
+                // Side card clicked - move to center
+                goToSlide(cardIndex);
+            }
+        }
+
+        // Deploy button functionality
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('deploy-btn')) {
+                const agentName = e.target.closest('.agent-info').querySelector('h3').textContent;
+                alert(`Deploying ${agentName}! AI Agent akan aktif dalam beberapa detik.`);
+                
+                // Animasi button
+                e.target.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    e.target.style.transform = 'scale(1)';
+                    e.target.textContent = 'Deployed ✓';
+                    e.target.style.background = 'linear-gradient(45deg, #00cc66, #00ff88)';
+                }, 200);
+                
+                setTimeout(() => {
+                    e.target.textContent = 'Deploy';
+                    e.target.style.background = 'linear-gradient(45deg, #0066ff, #00ccff)';
+                }, 3000);
+            }
         });
 
-        // Inisialisasi
+        // Search functionality
+        document.querySelector('.search-btn').addEventListener('click', () => {
+            const searchTerm = document.querySelector('.search-box').value;
+            if (searchTerm) {
+                alert(`Mencari AI Agent: "${searchTerm}"`);
+            }
+        });
+
+        document.querySelector('.search-box').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                document.querySelector('.search-btn').click();
+            }
+        });
+
+        // Removed parallax effect that was interfering with floating animations
+
+        // Image error handling function
+        function handleImageError(img, filename, icon) {
+            console.warn(`Image not found: ${filename}`);
+            console.log(`Failed to load: ${filename} from path: ${img.src}`);
+            img.style.display = 'none';
+            const placeholder = img.nextElementSibling;
+            if (placeholder && placeholder.classList.contains('website-preview-placeholder')) {
+                placeholder.style.display = 'flex';
+                // Update icon if provided
+                const iconElement = placeholder.querySelector('.placeholder-icon');
+                if (iconElement && icon) {
+                    iconElement.textContent = icon;
+                }
+            }
+        }
+
+        // Function to test image paths and provide debugging info
+        function debugImagePaths() {
+            const images = document.querySelectorAll('.website-preview-image');
+            console.log('=== Image Path Debug Info ===');
+            console.log(`Total images to load: ${images.length}`);
+            console.log('Current page URL:', window.location.href);
+            console.log('Base URL for images:', window.location.origin + window.location.pathname.replace(/[^/]*$/, ''));
+            
+            images.forEach((img, index) => {
+                const fullPath = new URL(img.src, window.location.href).href;
+                console.log(`Image ${index + 1}: ${img.src} -> ${fullPath}`);
+            });
+            
+            console.log('\nTroubleshooting tips:');
+            console.log('1. Check if files exist in the same folder as this HTML file');
+            console.log('2. Verify file names match exactly (case-sensitive)');
+            console.log('3. Ensure files are uploaded to the server');
+            console.log('4. Try accessing image URLs directly in browser');
+        }
+
+        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             createStars();
+            initCarousel();
+            
+            // Add click handlers to cards
+            cards = document.querySelectorAll('.agent-card');
+            cards.forEach(card => {
+                card.addEventListener('click', handleCardClick);
+            });
+            
+            // Debug image paths (remove in production)
+            setTimeout(debugImagePaths, 1000);
         });
 
-        // Efek hover untuk navigasi
-        document.querySelectorAll('.nav-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
+        // Smooth scroll untuk internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                btn.style.transform = 'translateY(-5px) scale(1.1)';
-                setTimeout(() => {
-                    btn.style.transform = 'translateY(-5px) scale(1)';
-                }, 200);
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'982e04d870bc797b',t:'MTc1ODUwNDQzNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'982e08f3116881b4',t:'MTc1ODUwNDYwNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
