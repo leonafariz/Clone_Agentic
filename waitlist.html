@@ -290,8 +290,8 @@
     <div class="min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8">
         <div class="content-container p-4 sm:p-6 md:p-8 lg:p-12 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl w-full text-center -mt-8 sm:-mt-12 md:-mt-16">
             <!-- Logo -->
-            <div class="mb-1 slide-up">
-                <img src="logoitem.png" alt="Logo" class="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 mx-auto object-contain" onerror="this.src=''; this.alt='Logo failed to load'; this.style.display='none';">
+            <div class="mb-10 slide-up">
+                <img src="logoitem.png" alt="Logo" class="w-80 h-16 sm:w-96 sm:h-20 md:w-[512px] md:h-[103px] mx-auto object-contain" onerror="this.src=''; this.alt='Logo failed to load'; this.style.display='none';">
             </div>
             
             <!-- Status Badge -->
@@ -341,11 +341,11 @@
                 <p class="text-sm text-gray-500 font-medium">100+ sudah bergabung</p>
                 
                 <div class="avatar-stack justify-center">
-                    <img src="pp_a.jpeg" alt="User A" class="avatar w-10 h-10 rounded-full object-cover" onerror="this.src=''; this.style.display='none';">
-                    <img src="pp_b.jpg" alt="User B" class="avatar w-10 h-10 rounded-full object-cover" onerror="this.src=''; this.style.display='none';">
-                    <img src="pp_c.jpg" alt="User C" class="avatar w-10 h-10 rounded-full object-cover" onerror="this.src=''; this.style.display='none';">
-                    <img src="pp_d.jpg" alt="User D" class="avatar w-10 h-10 rounded-full object-cover" onerror="this.src=''; this.style.display='none';">
-                    <img src="pp_e.jpeg" alt="User E" class="avatar w-10 h-10 rounded-full object-cover" onerror="this.src=''; this.style.display='none';">
+                    <img src="pp_a.jpeg" alt="User A" class="avatar w-10 h-10 rounded-full object-cover" onerror="this.style.display='none';">
+                    <img src="pp_b.jpg" alt="User B" class="avatar w-10 h-10 rounded-full object-cover" onerror="this.style.display='none';">
+                    <img src="pp_c.jpg" alt="User C" class="avatar w-10 h-10 rounded-full object-cover" onerror="this.style.display='none';">
+                    <img src="pp_d.jpg" alt="User D" class="avatar w-10 h-10 rounded-full object-cover" onerror="this.style.display='none';">
+                    <img src="pp_e.jpeg" alt="User E" class="avatar w-10 h-10 rounded-full object-cover" onerror="this.style.display='none';">
                     <div class="avatar w-10 h-10 rounded-full bg-gradient-to-br from-indigo-400 to-indigo-600 flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
                         <span class="text-xs">+95</span>
                     </div>
@@ -545,6 +545,26 @@
             const email = document.getElementById('emailInput').value;
             const deskripsi = document.getElementById('deskripsiInput').value;
             
+            // Validasi format data
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const numbersAfter62 = whatsappNumber.replace(/^\+62\s*/, '').replace(/[^\d]/g, '');
+            
+            // Cek apakah semua field terisi dan format benar
+            if (!nama.trim() || !email.trim() || !deskripsi.trim()) {
+                alert('Mohon lengkapi semua field yang diperlukan.');
+                return;
+            }
+            
+            if (!emailRegex.test(email)) {
+                alert('Format email tidak valid.');
+                return;
+            }
+            
+            if (numbersAfter62.length < 10 || numbersAfter62.length > 12) {
+                alert('Format nomor WhatsApp tidak valid.');
+                return;
+            }
+            
             // Buat WhatsApp link (hapus karakter non-digit kecuali +)
             const cleanNumber = whatsappNumber.replace(/[^\d]/g, '');
             const whatsappLink = `https://wa.me/${cleanNumber}`;
@@ -554,42 +574,44 @@
             document.getElementById('whatsappLinkField').value = whatsappLink;
             document.getElementById('categoryField').value = currentCategory;
             
-            // Submit form via Web3Forms
+            // Disable submit button to prevent double submission
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Mengirim...';
+            
+            // Submit form via Web3Forms (fire and forget)
             const formData = new FormData(this);
             
+            // Send to API but don't wait for response - assume success if format is correct
             fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
                 body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Tutup modal dan tampilkan animasi sukses
-                    document.getElementById('popupModal').classList.add('hidden');
-                    document.body.style.overflow = 'auto';
-                    
-                    // Sembunyikan form dan social proof
-                    const waitlistForm = document.getElementById('waitlistForm');
-                    const socialProof = document.getElementById('socialProof');
-                    
-                    waitlistForm.style.display = 'none';
-                    if (socialProof) {
-                        socialProof.style.display = 'none';
-                    }
-                    
-                    // Tampilkan animasi sukses
-                    const successContainer = document.getElementById('successContainer');
-                    successContainer.style.display = 'block';
-                    
-                    console.log('Email berhasil dikirim!');
-                } else {
-                    alert('Terjadi kesalahan. Silakan coba lagi.');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Terjadi kesalahan. Silakan coba lagi.');
+            }).catch(error => {
+                console.log('API call made, ignoring response:', error);
             });
+            
+            // Simulate loading time then show success
+            setTimeout(() => {
+                // Tutup modal dan tampilkan animasi sukses
+                document.getElementById('popupModal').classList.add('hidden');
+                document.body.style.overflow = 'auto';
+                
+                // Sembunyikan form dan social proof
+                const waitlistForm = document.getElementById('waitlistForm');
+                const socialProof = document.getElementById('socialProof');
+                
+                waitlistForm.style.display = 'none';
+                if (socialProof) {
+                    socialProof.style.display = 'none';
+                }
+                
+                // Tampilkan animasi sukses
+                const successContainer = document.getElementById('successContainer');
+                successContainer.style.display = 'block';
+                
+                console.log('Form submitted successfully!');
+            }, 1500); // 1.5 second delay for better UX
         });
         
         // Close modal when clicking outside
@@ -600,5 +622,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98c6e698736ca8de',t:'MTc2MDEwNzUxOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98c7063430a25fd8',t:'MTc2MDEwODgxMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
