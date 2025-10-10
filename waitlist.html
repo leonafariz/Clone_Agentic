@@ -291,7 +291,7 @@
         <div class="content-container p-4 sm:p-6 md:p-8 lg:p-12 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl w-full text-center -mt-8 sm:-mt-12 md:-mt-16">
             <!-- Logo -->
             <div class="mb-1 slide-up">
-                <img src="logohitamm.png" alt="Logo" class="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 mx-auto object-contain" onerror="this.src=''; this.alt='Logo failed to load'; this.style.display='none';">
+                <img src="logoitem.png" alt="Logo" class="w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 mx-auto object-contain" onerror="this.src=''; this.alt='Logo failed to load'; this.style.display='none';">
             </div>
             
             <!-- Status Badge -->
@@ -336,6 +336,22 @@
                 </div>
             </form>
             
+            <!-- Social Proof -->
+            <div id="socialProof" class="flex flex-col items-center space-y-4 slide-up-delay-4">
+                <p class="text-sm text-gray-500 font-medium">100+ sudah bergabung</p>
+                
+                <div class="avatar-stack justify-center">
+                    <img src="pp_a.jpeg" alt="User A" class="avatar w-10 h-10 rounded-full object-cover" onerror="this.src=''; this.style.display='none';">
+                    <img src="pp_b.jpg" alt="User B" class="avatar w-10 h-10 rounded-full object-cover" onerror="this.src=''; this.style.display='none';">
+                    <img src="pp_c.jpg" alt="User C" class="avatar w-10 h-10 rounded-full object-cover" onerror="this.src=''; this.style.display='none';">
+                    <img src="pp_d.jpg" alt="User D" class="avatar w-10 h-10 rounded-full object-cover" onerror="this.src=''; this.style.display='none';">
+                    <img src="pp_e.jpeg" alt="User E" class="avatar w-10 h-10 rounded-full object-cover" onerror="this.src=''; this.style.display='none';">
+                    <div class="avatar w-10 h-10 rounded-full bg-gradient-to-br from-indigo-400 to-indigo-600 flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
+                        <span class="text-xs">+95</span>
+                    </div>
+                </div>
+            </div>
+            
             <!-- Success Animation Container -->
             <div id="successContainer" class="success-container px-4 sm:px-2">
                 <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
@@ -349,32 +365,6 @@
                 <div class="inline-flex items-center bg-green-50 text-green-700 px-4 py-2 rounded-full text-sm font-semibold border border-green-200">
                     <div class="w-2 h-2 bg-green-500 rounded-full pulse-dot mr-2"></div>
                     Anda sudah terdaftar dalam daftar tunggu
-                </div>
-            </form>
-            
-            <!-- Social Proof -->
-            <div class="flex flex-col items-center space-y-4 slide-up-delay-4">
-                <p class="text-sm text-gray-500 font-medium">100+ sudah bergabung</p>
-                
-                <div class="avatar-stack justify-center">
-                    <div class="avatar w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center text-white font-semibold text-sm">
-                        A
-                    </div>
-                    <div class="avatar w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-semibold text-sm">
-                        B
-                    </div>
-                    <div class="avatar w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-white font-semibold text-sm">
-                        C
-                    </div>
-                    <div class="avatar w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center text-white font-semibold text-sm">
-                        D
-                    </div>
-                    <div class="avatar w-10 h-10 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white font-semibold text-sm">
-                        E
-                    </div>
-                    <div class="avatar w-10 h-10 rounded-full bg-gradient-to-br from-indigo-400 to-indigo-600 flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
-                        <span class="text-xs">+95</span>
-                    </div>
                 </div>
             </div>
         </div>
@@ -580,7 +570,7 @@
                     
                     // Sembunyikan form dan social proof
                     const waitlistForm = document.getElementById('waitlistForm');
-                    const socialProof = waitlistForm.nextElementSibling;
+                    const socialProof = document.getElementById('socialProof');
                     
                     waitlistForm.style.display = 'none';
                     if (socialProof) {
@@ -610,5 +600,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98c666bbb5b8fd0a',t:'MTc2MDEwMjI4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98c6e698736ca8de',t:'MTc2MDEwNzUxOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
