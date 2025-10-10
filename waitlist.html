@@ -216,6 +216,74 @@
             font-weight: 600;
             box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
         }
+        
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 3;
+            stroke: #10b981;
+            stroke-miterlimit: 10;
+            margin: 0 auto 20px auto;
+            box-shadow: inset 0px 0px 0px #10b981;
+            animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+        }
+        
+        .checkmark__circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 3;
+            stroke-miterlimit: 10;
+            stroke: #10b981;
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+        
+        .checkmark__check {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+        
+        @keyframes stroke {
+            100% {
+                stroke-dashoffset: 0;
+            }
+        }
+        
+        @keyframes scale {
+            0%, 100% {
+                transform: none;
+            }
+            50% {
+                transform: scale3d(1.1, 1.1, 1);
+            }
+        }
+        
+        @keyframes fill {
+            100% {
+                box-shadow: inset 0px 0px 0px 30px #10b981;
+            }
+        }
+        
+        .success-container {
+            display: none;
+            text-align: center;
+            animation: fadeInUp 0.5s ease-out forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 <body class="gradient-bg">
@@ -265,6 +333,22 @@
                 
                 <div id="successMessage" class="success-message max-w-sm sm:max-w-md md:max-w-lg mx-auto mt-3 sm:mt-4 text-sm sm:text-base">
                     ✅ Berhasil! Kami akan menghubungi Anda segera.
+                </div>
+            </form>
+            
+            <!-- Success Animation Container -->
+            <div id="successContainer" class="success-container px-4 sm:px-2">
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark__circle" fill="none" cx="26" cy="26" r="25"/>
+                    <path class="checkmark__check" fill="none" d="m14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Pendaftaran Berhasil! 🎉</h3>
+                <p class="text-sm sm:text-base text-gray-600 mb-4">
+                    Terima kasih telah mendaftar. Tim kami akan segera menghubungi Anda melalui WhatsApp.
+                </p>
+                <div class="inline-flex items-center bg-green-50 text-green-700 px-4 py-2 rounded-full text-sm font-semibold border border-green-200">
+                    <div class="w-2 h-2 bg-green-500 rounded-full pulse-dot mr-2"></div>
+                    Anda sudah terdaftar dalam daftar tunggu
                 </div>
             </form>
             
@@ -490,25 +574,22 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    // Tutup modal dan tampilkan pesan sukses
+                    // Tutup modal dan tampilkan animasi sukses
                     document.getElementById('popupModal').classList.add('hidden');
                     document.body.style.overflow = 'auto';
                     
-                    const inputGroup = document.querySelector('.input-group');
-                    const successMessage = document.getElementById('successMessage');
+                    // Sembunyikan form dan social proof
+                    const waitlistForm = document.getElementById('waitlistForm');
+                    const socialProof = waitlistForm.nextElementSibling;
                     
-                    inputGroup.style.display = 'none';
-                    successMessage.style.display = 'block';
+                    waitlistForm.style.display = 'none';
+                    if (socialProof) {
+                        socialProof.style.display = 'none';
+                    }
                     
-                    // Animasi sukses
-                    successMessage.style.transform = 'scale(0.9)';
-                    successMessage.style.opacity = '0';
-                    
-                    setTimeout(() => {
-                        successMessage.style.transform = 'scale(1)';
-                        successMessage.style.opacity = '1';
-                        successMessage.style.transition = 'all 0.3s ease';
-                    }, 100);
+                    // Tampilkan animasi sukses
+                    const successContainer = document.getElementById('successContainer');
+                    successContainer.style.display = 'block';
                     
                     console.log('Email berhasil dikirim!');
                 } else {
@@ -529,5 +610,5 @@
             }
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98c5e22ef5685fd8',t:'MTc2MDA5Njg1Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98c607cd83d2ce4b',t:'MTc2MDA5ODM5NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
