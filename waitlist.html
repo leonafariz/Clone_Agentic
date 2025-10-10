@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Website Generator - Daftar Tunggu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .gradient-bg {
+            background: 
+                radial-gradient(ellipse 120% 80% at 0% 0%, rgba(30, 58, 138, 0.25) 0%, transparent 50%),
+                radial-gradient(ellipse 100% 60% at 20% 10%, rgba(37, 99, 235, 0.20) 0%, transparent 45%),
+                radial-gradient(ellipse 80% 70% at 10% 20%, rgba(59, 130, 246, 0.15) 0%, transparent 40%),
+                linear-gradient(180deg, 
+                    #ffffff 0%, 
+                    #fefefe 25%, 
+                    #ffffff 50%, 
+                    #fdfdfd 75%, 
+                    #fafafa 100%
+                );
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gradient-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            background: 
+                radial-gradient(circle at 15% 20%, rgba(156, 163, 175, 0.30) 0%, transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(209, 213, 219, 0.26) 0%, transparent 20%),
+                radial-gradient(circle at 25% 70%, rgba(156, 163, 175, 0.29) 0%, transparent 22%),
+                radial-gradient(circle at 75% 80%, rgba(229, 231, 235, 0.34) 0%, transparent 28%),
+                radial-gradient(circle at 50% 10%, rgba(156, 163, 175, 0.24) 0%, transparent 18%);
+            animation: floatingElements 30s ease-in-out infinite;
+        }
+        
+        .gradient-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            background: 
+                radial-gradient(circle at 40% 40%, rgba(209, 213, 219, 0.22) 0%, transparent 15%),
+                radial-gradient(circle at 90% 60%, rgba(156, 163, 175, 0.26) 0%, transparent 24%),
+                radial-gradient(circle at 10% 90%, rgba(229, 231, 235, 0.31) 0%, transparent 26%),
+                radial-gradient(circle at 60% 15%, rgba(156, 163, 175, 0.23) 0%, transparent 19%);
+            animation: floatingElements 25s ease-in-out infinite reverse;
+        }
+        
+        @keyframes floatingElements {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px) scale(1);
+                opacity: 1;
+            }
+            25% {
+                transform: translateY(-8px) translateX(5px) scale(1.05);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(-3px) translateX(-3px) scale(0.95);
+                opacity: 0.9;
+            }
+            75% {
+                transform: translateY(-12px) translateX(8px) scale(1.02);
+                opacity: 0.7;
+            }
+        }
+        
+        .content-container {
+            background: transparent;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .slide-up {
+            animation: slideUpEntrance 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            opacity: 0;
+            transform: translateY(150px);
+        }
+        
+        .slide-up-delay-1 {
+            animation: slideUpEntrance 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s forwards;
+            opacity: 0;
+            transform: translateY(150px);
+        }
+        
+        .slide-up-delay-2 {
+            animation: slideUpEntrance 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
+            opacity: 0;
+            transform: translateY(150px);
+        }
+        
+        .slide-up-delay-3 {
+            animation: slideUpEntrance 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards;
+            opacity: 0;
+            transform: translateY(150px);
+        }
+        
+        .slide-up-delay-4 {
+            animation: slideUpEntrance 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s forwards;
+            opacity: 0;
+            transform: translateY(150px);
+        }
+        
+        @keyframes slideUpEntrance {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .pulse-dot {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .avatar-stack {
+            display: flex;
+            margin-left: -8px;
+        }
+        
+        .avatar-stack .avatar {
+            margin-left: -8px;
+            border: 2px solid white;
+            transition: transform 0.2s;
+        }
+        
+        .avatar-stack .avatar:hover {
+            transform: translateY(-2px);
+            z-index: 10;
+        }
+        
+        .input-group {
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .email-input {
+            flex: 1;
+            padding: 12px 12px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            background: transparent;
+        }
+        
+        @media (min-width: 640px) {
+            .email-input {
+                padding: 14px 20px;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .email-input {
+                padding: 16px 24px;
+            }
+        }
+        
+        .join-button {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+            color: white;
+            padding: 12px 14px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            border-radius: 0 50px 50px 0;
+        }
+        
+        @media (min-width: 640px) {
+            .join-button {
+                padding: 14px 20px;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            .join-button {
+                padding: 16px 32px;
+            }
+        }
+        
+        .join-button:hover {
+            background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+            transform: translateY(-1px);
+        }
+        
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 50px;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+        }
+    </style>
+</head>
+<body class="gradient-bg">
+    <div class="min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8">
+        <div class="content-container p-4 sm:p-6 md:p-8 lg:p-12 max-w-xs sm:max-w-sm md:max-w-lg lg:max-w-2xl w-full text-center">
+            <!-- Logo -->
+            <div class="mb-4 sm:mb-5 md:mb-6 slide-up">
+                <img src="logohitam.png" alt="Logo" class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto object-contain" onerror="this.src=''; this.alt='Logo failed to load'; this.style.display='none';">
+            </div>
+            
+            <!-- Status Badge -->
+            <div class="mb-6 sm:mb-7 md:mb-8 slide-up-delay-1">
+                <div class="inline-flex items-center bg-transparent text-blue-600 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-semibold border-2 border-blue-600 shadow-lg shadow-blue-600/50">
+                    <div class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-blue-600 rounded-full pulse-dot mr-1.5 sm:mr-2"></div>
+                    FASE AWAL TERBATAS
+                </div>
+            </div>
+            
+            <!-- Main Title -->
+            <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 sm:mb-5 md:mb-6 slide-up-delay-2 leading-tight whitespace-nowrap">
+                AI WEBSITE GENERATOR
+            </h2>
+            
+            <!-- Description -->
+            <p class="text-xs sm:text-sm md:text-sm text-gray-600 mb-4 sm:mb-5 md:mb-6 leading-tight max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto slide-up-delay-3 px-4 sm:px-2">
+                Daftar sekarang dan dapatkan akses awal ke sistem terbukti kami untuk membuat website dan landing page profesional secara instan menggunakan AI. Tapi <strong>CEPAT</strong>, jumlah tempat <strong>TERBATAS!</strong>
+            </p>
+            
+            <!-- WhatsApp Form -->
+            <form id="waitlistForm" class="mb-6 sm:mb-7 md:mb-8 slide-up-delay-4 px-4 sm:px-2">
+                <div class="input-group max-w-sm sm:max-w-md md:max-w-lg mx-auto">
+                    <input 
+                        type="tel" 
+                        id="whatsappInput"
+                        class="email-input text-sm sm:text-base" 
+                        placeholder="+62 812-3456-7890" 
+                        value="+62 "
+                        required
+                    >
+                    <div class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xs text-gray-400 pointer-events-none" id="whatsappLabel">
+                        WhatsApp
+                    </div>
+                    <button type="submit" class="join-button text-sm sm:text-base px-3 sm:px-6 md:px-8">
+                        Gabung
+                    </button>
+                </div>
+                
+                <div id="successMessage" class="success-message max-w-sm sm:max-w-md md:max-w-lg mx-auto mt-3 sm:mt-4 text-sm sm:text-base">
+                    ✅ Berhasil! Kami akan menghubungi Anda segera.
+                </div>
+            </form>
+            
+            <!-- Social Proof -->
+            <div class="flex flex-col items-center space-y-4 slide-up-delay-4">
+                <p class="text-sm text-gray-500 font-medium">100+ sudah bergabung</p>
+                
+                <div class="avatar-stack justify-center">
+                    <div class="avatar w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center text-white font-semibold text-sm">
+                        A
+                    </div>
+                    <div class="avatar w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-semibold text-sm">
+                        B
+                    </div>
+                    <div class="avatar w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-white font-semibold text-sm">
+                        C
+                    </div>
+                    <div class="avatar w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center text-white font-semibold text-sm">
+                        D
+                    </div>
+                    <div class="avatar w-10 h-10 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center text-white font-semibold text-sm">
+                        E
+                    </div>
+                    <div class="avatar w-10 h-10 rounded-full bg-gradient-to-br from-indigo-400 to-indigo-600 flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
+                        <span class="text-xs">+95</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Modal -->
+    <div id="popupModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-2xl p-6 sm:p-8 max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto">
+            <div class="text-center mb-6">
+                <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Lengkapi Data Anda</h3>
+                <p class="text-sm text-gray-600">Pilih kategori dan isi informasi untuk mendapatkan akses awal</p>
+            </div>
+            
+            <!-- Category Toggle -->
+            <div class="flex bg-gray-100 rounded-full p-1 mb-6">
+                <button id="bisnisTab" class="flex-1 py-2 px-4 rounded-full text-sm font-semibold transition-all duration-300 bg-blue-600 text-white">
+                    Bisnis
+                </button>
+                <button id="personalTab" class="flex-1 py-2 px-4 rounded-full text-sm font-semibold transition-all duration-300 text-gray-600">
+                    Personal
+                </button>
+            </div>
+            
+            <!-- Form -->
+            <form id="detailForm" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="ab6e0fb2-d11d-41a9-b4cb-8be0551e8205">
+                <input type="hidden" name="subject" value="Pendaftaran AI Website Generator - Daftar Tunggu">
+                <input type="hidden" name="from_name" value="AI Website Generator">
+                <input type="hidden" name="redirect" value="about:blank">
+                
+                <div class="space-y-4">
+                    <div>
+                        <input type="text" id="namaInput" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Nama Lengkap" required>
+                    </div>
+                    
+                    <div>
+                        <input type="email" id="emailInput" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Email" required>
+                    </div>
+                    
+                    <div>
+                        <textarea id="deskripsiInput" name="description" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none" placeholder="Deskripsi bisnis Anda" required></textarea>
+                    </div>
+                </div>
+                
+                <!-- Hidden fields for additional data -->
+                <input type="hidden" id="whatsappField" name="whatsapp" value="">
+                <input type="hidden" id="whatsappLinkField" name="whatsapp_link" value="">
+                <input type="hidden" id="categoryField" name="category" value="">
+                
+                <div class="flex gap-3 mt-6">
+                    <button type="button" id="closeModal" class="flex-1 py-3 px-4 border border-gray-300 rounded-lg text-gray-700 font-semibold hover:bg-gray-50 transition-colors">
+                        Batal
+                    </button>
+                    <button type="submit" class="flex-1 py-3 px-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                        Daftar Sekarang
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentCategory = 'bisnis';
+        
+        // Format nomor WhatsApp Indonesia (14 digit dimulai dari 62, + tidak dihitung)
+        function formatPhoneNumber(value) {
+            // Hapus semua karakter non-digit dari input
+            let numbers = value.replace(/[^\d]/g, '');
+            
+            // Jika user mengetik 62 di awal, hapus karena sudah ada +62
+            if (numbers.startsWith('62')) {
+                numbers = numbers.substring(2);
+            }
+            
+            // Batasi maksimal 12 digit setelah +62 (total 14 digit: 62 + 12 digit)
+            numbers = numbers.substring(0, 12);
+            
+            // Format: +62 812-3456-78901
+            let formatted = '+62 ';
+            
+            if (numbers.length > 0) {
+                formatted += numbers.substring(0, 3);
+            }
+            if (numbers.length > 3) {
+                formatted += '-' + numbers.substring(3, 7);
+            }
+            if (numbers.length > 7) {
+                formatted += '-' + numbers.substring(7, 12);
+            }
+            
+            return formatted;
+        }
+        
+        // Handle WhatsApp input formatting
+        document.getElementById('whatsappInput').addEventListener('input', function() {
+            const label = document.getElementById('whatsappLabel');
+            
+            // Hide/show label based on input
+            if (this.value.length > 4) {
+                label.style.display = 'none';
+            } else {
+                label.style.display = 'block';
+            }
+            
+            // Format phone number
+            this.value = formatPhoneNumber(this.value);
+            
+            // Reset border color
+            this.style.borderColor = '';
+        });
+        
+        // Handle form submission
+        document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const whatsappInput = document.getElementById('whatsappInput');
+            
+            // Validasi nomor WhatsApp (minimal 10 digit setelah +62, maksimal 12 digit setelah +62)
+            const numbersAfter62 = whatsappInput.value.replace(/^\+62\s*/, '').replace(/[^\d]/g, '');
+            if (numbersAfter62.length >= 10 && numbersAfter62.length <= 12) {
+                // Tampilkan popup
+                document.getElementById('popupModal').classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            } else {
+                // Highlight input jika tidak valid
+                whatsappInput.style.borderColor = '#ef4444';
+                whatsappInput.focus();
+                
+                setTimeout(() => {
+                    whatsappInput.style.borderColor = '';
+                }, 2000);
+            }
+        });
+        
+        // Handle category tabs
+        document.getElementById('bisnisTab').addEventListener('click', function() {
+            currentCategory = 'bisnis';
+            updateCategoryUI();
+        });
+        
+        document.getElementById('personalTab').addEventListener('click', function() {
+            currentCategory = 'personal';
+            updateCategoryUI();
+        });
+        
+        function updateCategoryUI() {
+            const bisnisTab = document.getElementById('bisnisTab');
+            const personalTab = document.getElementById('personalTab');
+            const deskripsiInput = document.getElementById('deskripsiInput');
+            
+            if (currentCategory === 'bisnis') {
+                bisnisTab.classList.add('bg-blue-600', 'text-white');
+                bisnisTab.classList.remove('text-gray-600');
+                personalTab.classList.remove('bg-blue-600', 'text-white');
+                personalTab.classList.add('text-gray-600');
+                deskripsiInput.placeholder = 'Deskripsi bisnis Anda';
+            } else {
+                personalTab.classList.add('bg-blue-600', 'text-white');
+                personalTab.classList.remove('text-gray-600');
+                bisnisTab.classList.remove('bg-blue-600', 'text-white');
+                bisnisTab.classList.add('text-gray-600');
+                deskripsiInput.placeholder = 'Deskripsi website apa yang mau dibikin';
+            }
+        }
+        
+        // Handle modal close
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('popupModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Handle detail form submission
+        document.getElementById('detailForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const whatsappNumber = document.getElementById('whatsappInput').value;
+            const nama = document.getElementById('namaInput').value;
+            const email = document.getElementById('emailInput').value;
+            const deskripsi = document.getElementById('deskripsiInput').value;
+            
+            // Buat WhatsApp link (hapus karakter non-digit kecuali +)
+            const cleanNumber = whatsappNumber.replace(/[^\d]/g, '');
+            const whatsappLink = `https://wa.me/${cleanNumber}`;
+            
+            // Set hidden fields
+            document.getElementById('whatsappField').value = whatsappNumber;
+            document.getElementById('whatsappLinkField').value = whatsappLink;
+            document.getElementById('categoryField').value = currentCategory;
+            
+            // Submit form via Web3Forms
+            const formData = new FormData(this);
+            
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Tutup modal dan tampilkan pesan sukses
+                    document.getElementById('popupModal').classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                    
+                    const inputGroup = document.querySelector('.input-group');
+                    const successMessage = document.getElementById('successMessage');
+                    
+                    inputGroup.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    
+                    // Animasi sukses
+                    successMessage.style.transform = 'scale(0.9)';
+                    successMessage.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        successMessage.style.transform = 'scale(1)';
+                        successMessage.style.opacity = '1';
+                        successMessage.style.transition = 'all 0.3s ease';
+                    }, 100);
+                    
+                    console.log('Email berhasil dikirim!');
+                } else {
+                    alert('Terjadi kesalahan. Silakan coba lagi.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Terjadi kesalahan. Silakan coba lagi.');
+            });
+        });
+        
+        // Close modal when clicking outside
+        document.getElementById('popupModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98c5bcdc5443a8de',t:'MTc2MDA5NTMyMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
